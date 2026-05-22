@@ -1,0 +1,100 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background-color: #151311;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
+
+.stitch-theme {
+  --background: #151311;
+  --foreground: #e8e1dd;
+  --card: #2d2927;
+  --card-foreground: #e8e1dd;
+  --popover: #383432;
+  --popover-foreground: #e8e1dd;
+  --primary: #e6bea8;
+  --on-primary: #432b1b;
+  --primary-foreground: #432b1b;
+  --secondary: #b0cbd0;
+  --secondary-foreground: #1a3438;
+  --muted: #1e1b19;
+  --muted-foreground: #d3c3bb;
+  --accent: #f58232;
+  --accent-foreground: #ffffff;
+  --destructive: #ffb4ab;
+  --destructive-foreground: #690005;
+  --border: #50453f;
+  --input: #50453f;
+  --ring: #e6bea8;
+  --radius: 1rem;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.floating-card {
+  transition: transform 0.3s ease-in-out;
+}
+
+.floating-card:hover {
+  transform: scale(1.05) rotate(0deg);
+}
+
+@keyframes stitch-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating-text {
+  animation: stitch-rotate 10s linear infinite;
+}
