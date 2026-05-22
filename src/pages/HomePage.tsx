@@ -1,5 +1,12 @@
+import { SiteHeader } from '@/components/site-header'
+import { SiteFooter } from '@/components/site-footer'
+import { OrderNowDropdown } from '@/components/order-now-dropdown'
+
+const assetImages = {
+  logo: '/assets/logo-white.png',
+}
+
 const stitchImages = {
-  logo: '/stitch/stitch-image-03.jpg',
   heroLeft: '/stitch/stitch-image-01.jpg',
   heroRight: '/stitch/stitch-image-08.jpg',
   heroMain: '/stitch/stitch-image-13.jpg',
@@ -48,66 +55,22 @@ const drinks = [
 
 export function HomePage() {
   return (
-    <div className="stitch-theme min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-50 w-full border-b border-border/30 bg-background/90 px-4 py-6 backdrop-blur-sm md:px-12">
-        <div className="mx-auto flex max-w-6xl items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="rounded-xl bg-primary p-2">
-              <img
-                src={stitchImages.logo}
-                alt="Unidine logo"
-                className="h-6 w-auto object-contain"
-              />
-            </div>
-            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">
-              Unidine
-            </span>
-          </div>
-
-          <nav className="hidden items-center gap-8 text-sm font-semibold md:flex">
-            {['Gallery', 'Menu', 'Contact'].map((label) => (
-              <a
-                key={label}
-                className="text-foreground transition-colors hover:text-primary"
-                href="#"
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-4">
-            <button
-              aria-label="Cart"
-              className="rounded-full border border-border bg-popover p-3 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
-                <path
-                  d="M3 6h2l2.5 11h10.5l2-8H7.5"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                />
-                <circle cx="9" cy="20" r="1" fill="currentColor" />
-                <circle cx="17" cy="20" r="1" fill="currentColor" />
-              </svg>
-            </button>
-            <button className="flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90">
-              Order Now
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-                <path
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </header>
+    <div className="stitch-theme min-h-screen bg-background text-foreground" id="top">
+      <SiteHeader
+        logoSrc={assetImages.logo}
+        logoAlt="Chiang Mai logo"
+        links={[
+          { label: 'Menu', href: '#menu' },
+          { label: 'Gallery', href: '/gallery' },
+          { label: 'Contact', href: '#footer' },
+        ]}
+        primaryAction={
+          <OrderNowDropdown
+            align="end"
+            triggerClassName="h-12 rounded-full px-6 text-sm font-bold shadow-lg transition-all hover:-translate-y-0.5 hover:scale-105"
+          />
+        }
+      />
 
       <main className="relative overflow-hidden px-4 pb-24 pt-16">
         <div className="absolute left-0 top-20 hidden lg:block">
@@ -167,24 +130,14 @@ export function HomePage() {
             Fresh ingredients, mouth-watering recipes, and a passion for good food delivered to your
             door or ready for pick-up.
           </p>
-          <a
-            className="group inline-flex items-center gap-3 rounded-full bg-primary px-10 py-5 text-lg font-bold text-primary-foreground shadow-lg transition-all hover:scale-105 hover:bg-primary/90"
-            href="#"
-          >
-            Order Now
-            <svg className="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24">
-              <path
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="3"
-              />
-            </svg>
-          </a>
+          <OrderNowDropdown
+            align="center"
+            contentClassName="mt-5"
+            triggerClassName="h-14 px-10 text-lg font-bold shadow-lg transition-all hover:scale-105"
+          />
         </div>
 
-        <section className="mx-auto mt-20 max-w-6xl px-4">
+        <section className="mx-auto mt-20 max-w-6xl px-4" id="gallery">
           <div className="group relative cursor-pointer">
             <div className="overflow-hidden rounded-[2rem] border-4 border-border shadow-2xl">
               <img
@@ -315,7 +268,7 @@ export function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto mb-32 mt-24 max-w-6xl px-4">
+        <section className="mx-auto mb-32 mt-24 max-w-6xl px-4" id="menu">
           <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <h2 className="mb-6 text-4xl font-bold text-foreground md:text-5xl">
@@ -542,91 +495,7 @@ export function HomePage() {
         </section>
       </main>
 
-      <footer className="border-t border-border/20 bg-card px-4 py-16 md:px-12">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-            <div className="min-h-[200px] overflow-hidden rounded-xl border border-border/30 shadow-lg">
-              <img
-                src={stitchImages.map}
-                alt="Map location"
-                className="h-full w-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <h4 className="mb-6 text-xl font-bold text-primary">Address</h4>
-              <p className="leading-relaxed text-muted-foreground">
-                96 East Central Park Road,<br />
-                New York, USA
-              </p>
-            </div>
-            <div>
-              <h4 className="mb-6 text-xl font-bold text-primary">Hours</h4>
-              <ul className="space-y-4 text-muted-foreground">
-                <li>Tues—Thurs 11:30AM-8PM</li>
-                <li>Fri—Sat 11:30AM-9PM</li>
-                <li>Sun-Mon Closed</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="mb-6 text-xl font-bold text-primary">Contact Us</h4>
-              <ul className="space-y-4 text-muted-foreground">
-                <li className="font-medium text-foreground">+198-0183792</li>
-                <li>
-                  <a className="transition-colors hover:text-primary" href="mailto:Oliva@Contact.Com">
-                    Oliva@Contact.Com
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="flex flex-col items-center justify-between gap-6 border-t border-border/20 pt-8 md:flex-row">
-            <p className="text-sm text-muted-foreground">
-              © Copyright 2020 Powered By WPDEVELOPER
-            </p>
-            <div className="flex items-center gap-4">
-              <a
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-background transition-colors hover:bg-primary"
-                href="#"
-                aria-label="Facebook"
-              >
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z" />
-                </svg>
-              </a>
-              <a
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-background transition-colors hover:bg-primary"
-                href="#"
-                aria-label="Twitter"
-              >
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
-                </svg>
-              </a>
-              <a
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-background transition-colors hover:bg-primary"
-                href="#"
-                aria-label="LinkedIn"
-              >
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                  <circle cx="4" cy="4" r="2" />
-                  <path d="M2 9h4v12H2z" />
-                </svg>
-              </a>
-              <a
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-background transition-colors hover:bg-primary"
-                href="#"
-                aria-label="YouTube"
-              >
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

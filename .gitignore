@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 
+# Ignore generated stitch folders
+stitch_*
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
