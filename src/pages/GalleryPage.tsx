@@ -8,7 +8,7 @@ const assetImages = {
   logo: '/assets/logo-white.png',
 }
 
-const categoryFilters = ['All', 'Small Plates', 'Entree', 'Beverages']
+const categoryFilters = ['All', 'Small Plates', 'Entrees', 'Beverages']
 
 const galleryItems = [
   {
@@ -39,6 +39,126 @@ const galleryItems = [
     label: 'Som Tum',
     image: '/assets/small_plates/Som Tum.jpg',
     category: 'Small Plates',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Chicken Noodle Soup',
+    image: '/assets/entrees/Chicken Noodle Soup.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Drunken Noodle',
+    image: '/assets/entrees/Drunken Noodle.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Eggplant Tofu',
+    image: '/assets/entrees/Eggplant Tofu.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Fried Rice',
+    image: '/assets/entrees/Fried Rice.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Gaeng Hung Lay',
+    image: '/assets/entrees/Gaeng Hung Lay.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Gra Dook Moo',
+    image: '/assets/entrees/Gra Dook Moo.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[500px]',
+  },
+  {
+    label: 'Kaeng Daeng',
+    image: '/assets/entrees/Kaeng Daeng.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Kaeng Keaw Waan Gai',
+    image: '/assets/entrees/Kaeng Keaw Waan Gai.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Khao Soi',
+    image: '/assets/entrees/Khao Soi.webp',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Larb Khua',
+    image: '/assets/entrees/Larb Khua.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Massaman Beef',
+    image: '/assets/entrees/Massaman Beef.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Nam Ngiaw',
+    image: '/assets/entrees/Nam Ngiaw (1).jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Pad See Ew',
+    image: '/assets/entrees/Pad See Ew.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Pad Thai Shrimp',
+    image: '/assets/entrees/Pad Thai Shrimp.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Pad Woon Sen',
+    image: '/assets/entrees/Pad Woon Sen.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Sai Oua',
+    image: '/assets/entrees/Sai Oua.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Spicy Basil',
+    image: '/assets/entrees/Spicy Basil.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Suki',
+    image: '/assets/entrees/Suki.PNG',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Veggie Tofu Stir Fry',
+    image: '/assets/entrees/Veggie Tofu Stir Fry.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
+  },
+  {
+    label: 'Yellow Curry',
+    image: '/assets/entrees/Yellow Curry.png',
+    category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[450px] md:w-[700px]',
   },
 ]
