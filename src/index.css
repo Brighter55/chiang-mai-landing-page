@@ -123,3 +123,89 @@
   z-index: 30;
   box-shadow: 0 25px 50px -12px rgba(145, 112, 93, 0.3);
 }
+
+.logo-marquee {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.logo-marquee__track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: logo-marquee-scroll var(--marquee-duration, 28s) linear infinite;
+}
+
+.logo-marquee--pause:hover .logo-marquee__track,
+.logo-marquee--pause:focus-within .logo-marquee__track {
+  animation-play-state: paused;
+}
+
+.logo-marquee__item {
+  flex: 0 0 auto;
+}
+
+.logo-marquee__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border-radius: 1rem;
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  background: color-mix(in srgb, var(--card) 90%, transparent);
+  padding: 0.65rem 1.2rem;
+  box-shadow: 0 16px 30px -22px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+
+.logo-marquee__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--foreground);
+}
+
+.logo-marquee__score {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.logo-marquee__stars {
+  color: #f5c24b;
+  font-size: 0.95rem;
+}
+
+.logo-marquee__meta {
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+}
+
+.logo-marquee__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--foreground);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.logo-marquee__logo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+@keyframes logo-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee__track {
+    animation: none;
+  }
+}
