@@ -1,19 +1,30 @@
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { OrderNowDropdown } from '@/components/order-now-dropdown'
+import { LogoCarousel } from '@/components/logo-carousel'
 
 const assetImages = {
   logo: '/assets/logo-white.png',
+  khaoSoi: "/assets/entrees/Khao Soi 2.jpg",
+  saiOua: "/assets/entrees/Sai Oua 2.jpg",
+}
+
+const reviewLogos = {
+  socialSauce: '/assets/review logos/sauce logo.jpg',
+  socialPost: '/assets/review logos/st louis post (1).jpg',
+  socialRiver: '/assets/review logos/riverfront times logo.png',
+  socialTop: '/assets/review logos/ian froeb logo.webp',
+  googleLogo: '/assets/review logos/google.svg',
+  yelpLogo: '/assets/review logos/yelp.svg',
+  uberEatsLogo: '/assets/review logos/uber eats logo.png',
+  doordashLogo: '/assets/review logos/doordash logo.png',
+  grubhubLogo: '/assets/review logos/grubhub logo.jpeg',
 }
 
 const stitchImages = {
   heroLeft: '/stitch/stitch-image-01.jpg',
   heroRight: '/stitch/stitch-image-08.jpg',
   heroMain: '/stitch/stitch-image-13.jpg',
-  socialSauce: '/stitch/stitch-image-04.jpg',
-  socialPost: '/stitch/stitch-image-12.jpg',
-  socialRiver: '/stitch/stitch-image-06.jpg',
-  socialTop: '/stitch/stitch-image-14.jpg',
   craveChicken: '/stitch/stitch-image-05.jpg',
   craveToast: '/stitch/stitch-image-02.jpg',
   craveSalad: '/stitch/stitch-image-11.jpg',
@@ -53,6 +64,69 @@ const drinks = [
   { name: 'Classic Mojito', price: '$14.00' },
 ]
 
+const reviewCarouselItems = [
+  {
+    src: reviewLogos.socialSauce,
+    alt: 'Sauce Magazine logo',
+    label: 'Sauce Magazine',
+  },
+  {
+    src: reviewLogos.socialPost,
+    alt: 'St. Louis Post-Dispatch logo',
+    label: 'St. Louis Post-Dispatch',
+  },
+  {
+    src: reviewLogos.socialRiver,
+    alt: 'Riverfront Times logo',
+    label: 'Riverfront Times',
+  },
+  {
+    src: reviewLogos.socialTop,
+    alt: 'Ian Froeb Top 100 logo',
+    label: "Ian Froeb's Top 100",
+  },
+  {
+    src: reviewLogos.googleLogo,
+    alt: 'Google logo',
+    label: 'Google Reviews',
+    rating: '4.4',
+    stars: '★★★★☆',
+    reviewCount: '252 reviews',
+  },
+  {
+    src: reviewLogos.uberEatsLogo,
+    alt: 'Uber Eats logo',
+    label: 'Uber Eats Reviews',
+    rating: '4.8',
+    stars: '★★★★★',
+    reviewCount: '320+ reviews',
+  },
+  {
+    src: reviewLogos.doordashLogo,
+    alt: 'DoorDash logo',
+    label: 'DoorDash Reviews',
+    rating: '4.7',
+    stars: '★★★★☆',
+    reviewCount: '500+ reviews',
+  },
+  {
+    src: reviewLogos.grubhubLogo,
+    alt: 'Grubhub logo',
+    label: 'Grubhub Reviews',
+    rating: '4.8',
+    stars: '★★★★★',
+    reviewCount: '169 reviews',
+  },
+  {
+    src: reviewLogos.yelpLogo,
+    alt: 'Yelp logo',
+    label: 'Yelp Reviews',
+    rating: '4.3',
+    stars: '★★★★☆',
+    reviewCount: '132 reviews',
+  },
+]
+
 export function HomePage() {
   return (
     <div className="stitch-theme min-h-screen bg-background text-foreground" id="top">
@@ -77,7 +151,7 @@ export function HomePage() {
           <div className="floating-card origin-center -rotate-12">
             <div className="relative">
               <img
-                src={stitchImages.heroLeft}
+                src={assetImages.khaoSoi}
                 alt="Delicious food"
                 className="h-48 w-48 rounded-[2rem] border-8 border-border object-cover shadow-xl"
               />
@@ -96,13 +170,13 @@ export function HomePage() {
           <div className="floating-card origin-center rotate-12">
             <div className="relative">
               <img
-                src={stitchImages.heroRight}
+                src={assetImages.saiOua}
                 alt="Healthy dish"
                 className="h-48 w-48 rounded-[2rem] border-8 border-border object-cover shadow-xl"
               />
               <div className="absolute -left-6 -top-6">
                 <div className="-rotate-12 rounded-full border-2 border-border bg-secondary px-4 py-2 text-xl font-black text-secondary-foreground shadow-lg">
-                  MEH!
+                  😎
                 </div>
               </div>
             </div>
@@ -110,25 +184,11 @@ export function HomePage() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <div className="mb-6 flex justify-center">
-            <div className="text-primary">
-              <svg className="h-12 w-12" fill="none" viewBox="0 0 24 24">
-                <path
-                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                />
-              </svg>
-            </div>
-          </div>
           <h1 className="mb-8 text-5xl font-extrabold leading-tight tracking-tight text-foreground md:text-7xl">
-            Savor the Taste of <br /> Perfection.
+            Experience Thai Cuisine
           </h1>
           <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Fresh ingredients, mouth-watering recipes, and a passion for good food delivered to your
-            door or ready for pick-up.
+            Crafted with fresh ingredients, traditional recipes, and bold flavors that bring the taste of Thailand to every dish.
           </p>
           <OrderNowDropdown
             align="center"
@@ -176,33 +236,10 @@ export function HomePage() {
 
         <section className="mx-auto mt-16 max-w-6xl px-4 text-center">
           <h2 className="mb-10 text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground opacity-70">
-            Recognized by St. Louis&apos; Finest
+            Rated Highly Across Google, Yelp & More
           </h2>
-          <div className="flex flex-wrap items-center justify-center gap-10 opacity-60 md:gap-16">
-            <img
-              src={stitchImages.socialSauce}
-              alt="Sauce Magazine"
-              className="h-10 w-auto grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100"
-              loading="lazy"
-            />
-            <img
-              src={stitchImages.socialPost}
-              alt="St. Louis Post-Dispatch"
-              className="h-10 w-auto grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100"
-              loading="lazy"
-            />
-            <img
-              src={stitchImages.socialRiver}
-              alt="Riverfront Times"
-              className="h-8 w-auto grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100"
-              loading="lazy"
-            />
-            <img
-              src={stitchImages.socialTop}
-              alt="Ian Froeb's Top 100"
-              className="h-16 w-auto grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100"
-              loading="lazy"
-            />
+          <div className="mt-6 opacity-90">
+            <LogoCarousel items={reviewCarouselItems} durationSeconds={28} pauseOnHover />
           </div>
         </section>
 

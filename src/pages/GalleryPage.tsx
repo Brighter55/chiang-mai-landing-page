@@ -2,52 +2,173 @@ import { useState } from 'react'
 
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
+import { OrderNowDropdown } from '@/components/order-now-dropdown'
 
 const assetImages = {
   logo: '/assets/logo-white.png',
 }
 
-const categoryFilters = ['All', 'Small Plates', 'Entree', 'Beverages']
+const categoryFilters = ['All', 'Small Plates', 'Entrees']
 
-const carouselItems = [
+const galleryItems = [
   {
-    label: 'Ceviche Royale',
-    image: '/stitch/stitch-image-04.jpg',
-    className: 'hidden-peak',
-    cardSize: 'w-64 h-80',
+    label: 'Dumplings',
+    image: '/assets/small_plates/Dumplings.jpg',
+    category: 'Small Plates',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
   },
   {
-    label: 'The Lounge',
-    image: '/stitch/stitch-image-08.jpg',
-    className: 'side side-left',
-    cardSize: 'w-72 h-96',
+    label: 'Gai Todd',
+    image: '/assets/small_plates/Gai Todd.png',
+    category: 'Small Plates',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
   },
   {
-    label: 'Dinner Service',
-    image: '/stitch/stitch-image-13.jpg',
-    className: 'active',
-    cardSize: 'w-80 h-[450px] md:w-[400px]',
+    label: 'Nua Sawaan',
+    image: '/assets/small_plates/Nua Sawaan.jpg',
+    category: 'Small Plates',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
   },
   {
-    label: 'Artisanal Bake',
-    image: '/stitch/stitch-image-10.jpg',
-    className: 'side side-right',
-    cardSize: 'w-72 h-96',
+    label: 'Poh Piah',
+    image: '/assets/small_plates/Poh Piah.jpg',
+    category: 'Small Plates',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
   },
   {
-    label: 'City Nights',
-    image: '/stitch/stitch-image-05.jpg',
-    className: 'hidden-peak',
-    cardSize: 'w-64 h-80',
+    label: 'Som Tum',
+    image: '/assets/small_plates/Som Tum.jpg',
+    category: 'Small Plates',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Chicken Noodle Soup',
+    image: '/assets/entrees/Chicken Noodle Soup.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Drunken Noodle',
+    image: '/assets/entrees/Drunken Noodle.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Eggplant Tofu',
+    image: '/assets/entrees/Eggplant Tofu.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Fried Rice',
+    image: '/assets/entrees/Fried Rice.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Gaeng Hung Lay',
+    image: '/assets/entrees/Gaeng Hung Lay.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Gra Dook Moo',
+    image: '/assets/entrees/Gra Dook Moo.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Kaeng Daeng',
+    image: '/assets/entrees/Kaeng Daeng.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Kaeng Keaw Waan Gai',
+    image: '/assets/entrees/Kaeng Keaw Waan Gai.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Khao Soi',
+    image: '/assets/entrees/Khao Soi.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Larb Khua',
+    image: '/assets/entrees/Larb Khua.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Massaman Beef',
+    image: '/assets/entrees/Massaman Beef.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Nam Ngiaw',
+    image: '/assets/entrees/Nam Ngiaw (1).jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Pad See Ew',
+    image: '/assets/entrees/Pad See Ew.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Pad Thai Shrimp',
+    image: '/assets/entrees/Pad Thai Shrimp.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Pad Woon Sen',
+    image: '/assets/entrees/Pad Woon Sen.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Sai Oua',
+    image: '/assets/entrees/Sai Oua.jpg',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Spicy Basil',
+    image: '/assets/entrees/Spicy Basil.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Suki',
+    image: '/assets/entrees/Suki.PNG',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Veggie Tofu Stir Fry',
+    image: '/assets/entrees/Veggie Tofu Stir Fry.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+  },
+  {
+    label: 'Yellow Curry',
+    image: '/assets/entrees/Yellow Curry.png',
+    category: 'Entrees',
+    cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
   },
 ]
 
-const getCircularOffset = (index: number, activeIndex: number) => {
+const getCircularOffset = (index: number, activeIndex: number, itemCount: number) => {
   const rawOffset = index - activeIndex
-  const halfwayPoint = Math.floor(carouselItems.length / 2)
+  const halfwayPoint = Math.floor(itemCount / 2)
 
-  if (rawOffset > halfwayPoint) return rawOffset - carouselItems.length
-  if (rawOffset < -halfwayPoint) return rawOffset + carouselItems.length
+  if (rawOffset > halfwayPoint) return rawOffset - itemCount
+  if (rawOffset < -halfwayPoint) return rawOffset + itemCount
   return rawOffset
 }
 
@@ -68,10 +189,23 @@ const getCarouselItemStyle = (offset: number) => {
 }
 
 export function GalleryPage() {
+  const [activeFilter, setActiveFilter] = useState('All')
   const [activeIndex, setActiveIndex] = useState(2)
 
+  const visibleItems =
+    activeFilter === 'All'
+      ? galleryItems
+      : galleryItems.filter((item) => item.category === activeFilter)
+
   const scrollCarousel = (direction: -1 | 1) => {
-    setActiveIndex((currentIndex) => (currentIndex + direction + carouselItems.length) % carouselItems.length)
+    if (visibleItems.length === 0) return
+
+    setActiveIndex((currentIndex) => (currentIndex + direction + visibleItems.length) % visibleItems.length)
+  }
+
+  const handleFilterChange = (filter: string) => {
+    setActiveFilter(filter)
+    setActiveIndex(2)
   }
 
   return (
@@ -85,35 +219,28 @@ export function GalleryPage() {
           { label: 'Contact', href: '/#footer' },
         ]}
         primaryAction={
-          <a
-            className="flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-            href="/"
-          >
-            Book a Table
-          </a>
+          <OrderNowDropdown
+            align="end"
+            triggerClassName="h-12 rounded-full px-6 text-sm font-bold shadow-lg transition-all hover:-translate-y-0.5 hover:scale-105"
+          />
         }
       />
 
       <main className="grow pb-24 pt-16 md:pb-28 md:pt-20">
         <section className="px-4 text-center md:px-12">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-primary">
+          <p className="mb-4 text-5xl font-semibold uppercase tracking-[0.35em] text-primary">
             Gallery
-          </p>
-          <h1 className="text-5xl font-bold tracking-tight text-foreground md:text-7xl">
-            My Visual Diary
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            A glimpse into the soul of Chiang Mai - our flavors, our space, and our stories.
           </p>
         </section>
 
         <section className="mt-10 flex flex-wrap justify-center gap-3 px-4 md:mt-12 md:px-12">
-          {categoryFilters.map((filter, index) => (
+          {categoryFilters.map((filter) => (
             <button
               key={filter}
               type="button"
+              onClick={() => handleFilterChange(filter)}
               className={
-                index === 0
+                activeFilter === filter
                   ? 'rounded-full bg-surface-container-highest px-6 py-3 text-sm font-semibold text-on-surface shadow-sm'
                   : 'rounded-full border border-outline/70 px-6 py-3 text-sm font-semibold text-on-surface-variant transition-colors hover:border-primary hover:text-primary'
               }
@@ -142,27 +269,46 @@ export function GalleryPage() {
           </button>
 
           <div className="carousel-track w-full overflow-hidden px-10 py-8 md:px-16" aria-label="Gallery carousel">
-            {carouselItems.map((item, index) => (
-              <article
-                key={item.label}
-                className={`carousel-item group absolute left-1/2 top-1/2 overflow-hidden rounded-xl ${item.cardSize} ${item.className}`}
-                style={getCarouselItemStyle(getCircularOffset(index, activeIndex))}
-                onClick={() => setActiveIndex(index)}
-              >
-                <img
-                  src={item.image}
-                  alt={item.label}
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/15 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                <div className="absolute inset-0 flex items-end p-4 md:p-5">
-                  <div className="rounded-full bg-black/45 px-3 py-2 text-xs font-semibold tracking-[0.2em] text-primary backdrop-blur-md">
-                    {item.label}
-                  </div>
-                </div>
-              </article>
-            ))}
+            {visibleItems.length > 0 ? (
+              visibleItems.map((item, index) => {
+                const offset = getCircularOffset(index, activeIndex, visibleItems.length)
+                const distance = Math.abs(offset)
+                const itemClassName =
+                  distance === 0
+                    ? 'active'
+                    : distance === 1
+                      ? offset < 0
+                        ? 'side side-left'
+                        : 'side side-right'
+                      : 'hidden-peak'
+
+                return (
+                  <article
+                    key={item.label}
+                    className={`carousel-item group absolute left-1/2 top-1/2 overflow-hidden rounded-xl ${item.cardSize} ${itemClassName}`}
+                    style={getCarouselItemStyle(offset)}
+                    onClick={() => setActiveIndex(index)}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.label}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/15 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                    <div className="absolute inset-0 flex items-end p-4 md:p-5">
+                      <div className="rounded-full bg-black/45 px-3 py-2 text-xs font-semibold tracking-[0.2em] text-primary backdrop-blur-md">
+                        {item.label}
+                      </div>
+                    </div>
+                  </article>
+                )
+              })
+            ) : (
+              <div className="rounded-2xl border border-outline/40 bg-surface-container-low px-6 py-8 text-center text-sm text-on-surface-variant">
+                No images available for this category yet.
+              </div>
+            )}
           </div>
 
           <button
