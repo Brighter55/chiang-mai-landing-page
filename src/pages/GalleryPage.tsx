@@ -19,7 +19,7 @@ const galleryItems = [
   },
   {
     label: 'Gai Todd',
-    image: '/assets/small_plates/Gai Todd.jpg',
+    image: '/assets/small_plates/Gai Todd.png',
     category: 'Small Plates',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
   },
