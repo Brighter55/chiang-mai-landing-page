@@ -10,9 +10,10 @@ import {
 import { cn } from '@/lib/utils'
 
 const orderLinks = [
-  { label: 'GrabFood', href: 'https://food.grab.com/th/en/' },
-  { label: 'foodpanda', href: 'https://www.foodpanda.co.th/en/' },
-  { label: 'LINE MAN', href: 'https://lineman.line.me/en/' },
+  { label: 'Shift4 (best price for pickup)', href: 'https://online.skytab.com/dce841a4ec3f0964b126ce32a7387525' },
+  { label: 'Doordash', href: 'https://www.doordash.com/store/chiang-mai-(webster-groves)-webster-groves-150533/51182348/?pickup=true&rwg_token=AFd1xnHMjjVcOQIU-rEkdljFIOlAVQiPXipYbtDRf7JneuPBYo07xB3HwbxZn8q_cJAEGj_qkXWF8Q1HfDZE_iWfA2S1VtFOuQ==&utm_campaign=gpa' },
+  { label: 'Uber Eats', href: 'https://www.ubereats.com/store/chiang-mai/pouTPR4JUVCN6zukpm1Xig?diningMode=PICKUP&utm_campaign=CM2508147-search-free-nonbrand-google-pas_e_all_acq_Global&utm_medium=search-free-nonbrand&utm_source=google-pas&rwg_token=AFd1xnG1sPO49-568HUYxXuBANO36MUWI7aRrI7M7fSVQFbqXOQIZppOx2BxWXl6YLC2Ac2NGOwIUZo8Vbs6pu5yCb3cwgDOcw%3D%3D' },
+  { label: 'Grubhub', href: 'https://www.grubhub.com/restaurant/chiang-mai-8158-big-bend-blvd-saint-louis/6055360?utm_source=google&utm_medium=organic&utm_campaign=place-action-link&pickup=true&rwg_token=AFd1xnHAJMTUixti9guW0BygEU-hCOaETffCjBt5i5AlXGd0EedHn43Qi89viuLX2RV7m4cvDlTX-OL1xY1jblIdSpGTv1ybaA%3D%3D' },
 ]
 
 type OrderNowDropdownProps = {

@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { OrderNowDropdown } from '@/components/order-now-dropdown'
@@ -16,6 +18,7 @@ const reviewLogos = {
   socialTop: '/assets/review logos/ian froeb logo.webp',
   googleLogo: '/assets/review logos/google.svg',
   yelpLogo: '/assets/review logos/yelp.svg',
+  restaurantGuruLogo: '/assets/review logos/restaurant guru logo.webp',
   uberEatsLogo: '/assets/review logos/uber eats logo.png',
   doordashLogo: '/assets/review logos/doordash logo.png',
   grubhubLogo: '/assets/review logos/grubhub logo.jpeg',
@@ -29,39 +32,192 @@ const stitchImages = {
   craveToast: '/stitch/stitch-image-02.jpg',
   craveSalad: '/stitch/stitch-image-11.jpg',
   entrees: '/stitch/stitch-image-10.jpg',
-  drinks: '/stitch/stitch-image-09.jpg',
   map: '/stitch/stitch-image-07.jpg',
+}
+
+const smallPlatesImages = {
+  gaiTodd: '/assets/small_plates/Gai Todd.png',
+  somTum: '/assets/small_plates/Som Tum.jpg',
+  dumplings: '/assets/small_plates/Dumplings.jpg',
+  pohPiah: '/assets/small_plates/Poh Piah.jpg',
+  nuaSawaan: '/assets/small_plates/Nua Sawaan.jpg',
 }
 
 const craveWorthy = [
   {
-    title: 'Easy Chicken Dinners,\nDeliciously Quick',
-    image: stitchImages.craveChicken,
+    title: 'Gai Todd\n(Crispy Fried Chicken)',
+    image: smallPlatesImages.gaiTodd,
   },
   {
-    title: 'Sweet, Golden French\nToast Favorites!',
-    image: stitchImages.craveToast,
+    title: 'Som Tum\n(Green Papaya Salad)',
+    image: smallPlatesImages.somTum,
   },
   {
-    title: 'Fresh, Flavorful Salads\nwith Power!',
-    image: stitchImages.craveSalad,
+    title: 'Steamed\nDumplings',
+    image: smallPlatesImages.dumplings,
+  },
+  {
+    title: 'Poh Piah\n(Spring Rolls)',
+    image: smallPlatesImages.pohPiah,
+  },
+  {
+    title: 'Nua Sawaan\n(Beef Jerky)',
+    image: smallPlatesImages.nuaSawaan,
   },
 ]
+
+const entreeImages = {
+  khaoSoi: '/assets/entrees/Khao Soi 2.jpg',
+  gaengHungLay: '/assets/entrees/Gaeng Hung Lay.jpg',
+  kaengKeawWaanGai: '/assets/entrees/Kaeng Keaw Waan Gai.jpg',
+  padThaiShrimp: '/assets/entrees/Pad Thai Shrimp.png',
+  massamanBeef: '/assets/entrees/Massaman Beef.jpg',
+  padSeeEw: '/assets/entrees/Pad See Ew.png',
+  spicyBasil: '/assets/entrees/Spicy Basil.png',
+  namNgiaw: '/assets/entrees/Nam Ngiaw (1).jpg',
+  saiOua: '/assets/entrees/Sai Oua 2.jpg',
+  drunkenNoodle: '/assets/entrees/Drunken Noodle.png',
+  yellowCurry: '/assets/entrees/Yellow Curry.png',
+  larbKhua: '/assets/entrees/Larb Khua.jpg',
+  chickenNoodleSoup: '/assets/entrees/Chicken Noodle Soup.png',
+  eggplantTofu: '/assets/entrees/Eggplant Tofu.jpg',
+  friedRice: '/assets/entrees/Fried Rice.png',
+  graDookMoo: '/assets/entrees/Gra Dook Moo.jpg',
+  kaengDaeng: '/assets/entrees/Kaeng Daeng.png',
+  padWoonSen: '/assets/entrees/Pad Woon Sen.jpg',
+  suki: '/assets/entrees/Suki.PNG',
+  veggieTofuStirFry: '/assets/entrees/Veggie Tofu Stir Fry.png',
+}
 
 const entrees = [
-  { name: 'Braised Lamb Shank', price: '$34.00' },
-  { name: 'Grilled Salmon', price: '$28.00' },
-  { name: 'Truffle Risotto', price: '$26.00' },
-  { name: 'Prime Ribeye', price: '$42.00' },
-  { name: 'Cherry Roast Duck', price: '$32.00' },
-  { name: 'Butter Lobster', price: '$48.00' },
+  {
+    title: 'Khao Soi',
+    image: entreeImages.khaoSoi,
+  },
+  {
+    title: 'Gaeng Hung Lay\n(Braised Curry Pork)',
+    image: entreeImages.gaengHungLay,
+  },
+  {
+    title: 'Kaeng Keaw Waan Gai\n(Green Curry)',
+    image: entreeImages.kaengKeawWaanGai,
+  },
+  {
+    title: 'Pad Thai\nShrimp',
+    image: entreeImages.padThaiShrimp,
+  },
+  {
+    title: 'Massaman\nBeef',
+    image: entreeImages.massamanBeef,
+  },
+  {
+    title: 'Pad See Ew',
+    image: entreeImages.padSeeEw,
+  },
+  {
+    title: 'Spicy Basil',
+    image: entreeImages.spicyBasil,
+  },
+  {
+    title: 'Nam Ngiaw',
+    image: entreeImages.namNgiaw,
+  },
+  {
+    title: 'Sai Oua\n(Northern Thai Sausage)',
+    image: entreeImages.saiOua,
+  },
+  {
+    title: 'Drunken Noodle',
+    image: entreeImages.drunkenNoodle,
+  },
+  {
+    title: 'Yellow Curry',
+    image: entreeImages.yellowCurry,
+  },
+  {
+    title: 'Larb Khua',
+    image: entreeImages.larbKhua,
+  },
+  {
+    title: 'Chicken Noodle\nSoup',
+    image: entreeImages.chickenNoodleSoup,
+  },
+  {
+    title: 'Eggplant\nTofu',
+    image: entreeImages.eggplantTofu,
+  },
+  {
+    title: 'Fried\nRice',
+    image: entreeImages.friedRice,
+  },
+  {
+    title: 'Gra Dook Moo\n(Pork Ribs)',
+    image: entreeImages.graDookMoo,
+  },
+  {
+    title: 'Kaeng Daeng\n(Red Curry)',
+    image: entreeImages.kaengDaeng,
+  },
+  {
+    title: 'Pad Woon Sen',
+    image: entreeImages.padWoonSen,
+  },
+  {
+    title: 'Suki',
+    image: entreeImages.suki,
+  },
+  {
+    title: 'Veggie Tofu\nStir Fry',
+    image: entreeImages.veggieTofuStirFry,
+  },
 ]
 
-const drinks = [
-  { name: 'Old Fashioned', price: '$16.00' },
-  { name: 'Sparkling Paloma', price: '$15.00' },
-  { name: 'Espresso Martini', price: '$18.00' },
-  { name: 'Classic Mojito', price: '$14.00' },
+const beverages = [
+  {
+    category: 'Sake',
+    items: [
+      { name: 'Rihaku - Wandering Poet (300 mL)' },
+      { name: 'Dreamy Clouds (300 mL)' },
+      { name: 'Tozai Living Jewel (300 mL)' },
+      { name: 'Tozai Snow Maiden (Nigori) (300 mL)' },
+      { name: 'Tozai Night Swim' },
+    ],
+  },
+  {
+    category: 'Beer',
+    items: [
+      { name: 'Singha' },
+      { name: 'Tsingtao' },
+      { name: 'Sapporo' },
+      { name: 'Blue Moon' },
+    ],
+  },
+  {
+    category: 'Wine',
+    items: [
+      { name: 'Crane Lake Pinot Grigio (750 mL)' },
+      { name: 'Lucky Star Chardonnay (750 mL)' },
+      { name: 'Chasing Lions Cabernet (750 mL)' },
+      { name: "Pareto's Pinot Noir (750 mL)" },
+      { name: 'Crane Lake Pinot Grigio (175 mL)' },
+      { name: 'Crane Lake Chardonnay (175 mL)' },
+      { name: 'Crane Lake Cabernet (175 mL)' },
+      { name: 'Underwood Pinot Noir (250 mL)' },
+    ],
+  },
+  {
+    category: 'NA Beverages',
+    items: [
+      { name: 'Perrier' },
+      { name: 'Thai Iced Tea' },
+      { name: 'Thai Iced Coffee' },
+      { name: 'Coconut Juice' },
+      { name: 'Green tea (hot)' },
+      { name: 'Iced tea' },
+      { name: 'Soda' },
+      { name: 'Bottle water' },
+    ],
+  },
 ]
 
 const reviewCarouselItems = [
@@ -127,7 +283,105 @@ const reviewCarouselItems = [
   },
 ]
 
+const testimonials = [
+  {
+    name: 'Harper G',
+    location: 'Google Review',
+    logoSrc: reviewLogos.googleLogo,
+    logoAlt: 'Google logo',
+    quote:
+      'Chiang Mai is an absolute must-go if you like Thai food. I got the Khao Soi and it was the perfect flavor and it comes with 2 chicken legs that were tender and delicious. Highly highly recommend, if I could give more stars I would.',
+  },
+  {
+    name: 'Julie R',
+    location: 'Uber Eats',
+    logoSrc: reviewLogos.uberEatsLogo,
+    logoAlt: 'uber eats logo',
+    quote:
+      'Well packed, hot when it arrived.....oh so tasty',
+  },
+  {
+    name: 'Emily C',
+    location: 'Doordash',
+    logoSrc: reviewLogos.doordashLogo,
+    logoAlt: 'doordash logo',
+    quote:
+      "The food is always excellent! Packed with flavor, so fresh and delicious. We've tried many different dishes and everything has been a hit. Highly recommend. Be sure to get an order of the jerky.",
+  },
+  {
+    name: 'Teagen',
+    location: 'Grubhub',
+    logoSrc: reviewLogos.grubhubLogo,
+    logoAlt: 'grubhub logo',
+    quote:
+      'The food was the best I have had in a while! Thanks!',
+  },
+  {
+    name: 'Francesco P',
+    location: 'Yelp',
+    logoSrc: reviewLogos.yelpLogo,
+    logoAlt: 'yelp logo',
+    quote:
+      "Hands down the best coconut curry in the St. Louis area. I've been trying to find a place that has great coconut curry for many months to no avail. In fact, I went as far as driving to Columbia Illinois. The Kaeng Daeng here was fire and honestly nothing else was even close.\n\nExcited to try more dishes soon",
+  },
+  {
+    name: 'Lucy V',
+    location: 'Google Review',
+    logoSrc: reviewLogos.googleLogo,
+    logoAlt: 'Google logo',
+    quote:
+      "I've taken out and eaten in. Both times have been phenomenal. Khao soi and pad see ew are the way to go. Khao soi is my absolute favorite, this is the best one I've found in stl (second favorite fork & stix).\n\nLove supporting local, would absolutely recommend checking out!",
+  },
+]
+
 export function HomePage() {
+  const [testimonialIndex, setTestimonialIndex] = useState(0)
+  const [platesIndex, setPlatesIndex] = useState(0)
+  const [entreesIndex, setEntreesIndex] = useState(0)
+
+  const testimonialPageSize = 3
+  const platesPageSize = 3
+  const entreesPageSize = 6
+
+  const visibleTestimonials = Array.from({ length: testimonialPageSize }, (_, offset) => {
+    if (testimonials.length === 0) return undefined
+    return testimonials[(testimonialIndex + offset) % testimonials.length]
+  }).filter((item): item is (typeof testimonials)[number] => Boolean(item))
+
+  const visiblePlates = craveWorthy.slice(platesIndex, platesIndex + platesPageSize)
+
+  const visibleEntrees = entrees.slice(entreesIndex, entreesIndex + entreesPageSize)
+
+  const scrollTestimonials = (direction: -1 | 1) => {
+    if (testimonials.length === 0) return
+
+    setTestimonialIndex(
+      (currentIndex) => (currentIndex + direction * testimonialPageSize + testimonials.length) % testimonials.length,
+    )
+  }
+
+  const scrollPlates = (direction: -1 | 1) => {
+    if (craveWorthy.length === 0) return
+    setPlatesIndex((currentIndex) => {
+      const pageSize = platesPageSize
+      const totalPages = Math.ceil(craveWorthy.length / pageSize)
+      const currentPage = Math.floor(currentIndex / pageSize)
+      const nextPage = (currentPage + direction + totalPages) % totalPages
+      return nextPage * pageSize
+    })
+  }
+
+  const scrollEntrees = (direction: -1 | 1) => {
+    if (entrees.length === 0) return
+    setEntreesIndex((currentIndex) => {
+      const pageSize = entreesPageSize
+      const totalPages = Math.ceil(entrees.length / pageSize)
+      const currentPage = Math.floor(currentIndex / pageSize)
+      const nextPage = (currentPage + direction + totalPages) % totalPages
+      return nextPage * pageSize
+    })
+  }
+
   return (
     <div className="stitch-theme min-h-screen bg-background text-foreground" id="top">
       <SiteHeader
@@ -188,7 +442,7 @@ export function HomePage() {
             Experience Thai Cuisine
           </h1>
           <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Crafted with fresh ingredients, traditional recipes, and bold flavors that bring the taste of Thailand to every dish.
+            Crafted fresh, dish by dish, with traditional recipes and bold Thai flavors.
           </p>
           <OrderNowDropdown
             align="center"
@@ -244,64 +498,72 @@ export function HomePage() {
         </section>
 
         <section className="mx-auto mb-32 mt-24 max-w-6xl px-4">
-          <div className="mb-16 text-center">
-            <span className="mb-4 block text-sm font-bold uppercase tracking-[0.3em] text-destructive">
-              Testimonial
-            </span>
-            <h2 className="text-5xl font-bold text-foreground md:text-6xl">
-              What Our Customers Say
-            </h2>
+          <div className="mb-16 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl text-center md:text-left">
+              <span className="mb-4 block text-sm font-bold uppercase tracking-[0.3em] text-destructive">
+                Testimonial
+              </span>
+              <h2 className="text-5xl font-bold text-foreground md:text-6xl">
+                What Our Customers Say
+              </h2>
+            </div>
+            <div className="flex justify-center gap-4 md:justify-end">
+              <button
+                aria-label="Previous testimonials"
+                className="rounded-xl border border-border bg-popover p-4 transition-colors hover:bg-card"
+                type="button"
+                onClick={() => scrollTestimonials(-1)}
+              >
+                <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
+                  <path
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </button>
+              <button
+                aria-label="Next testimonials"
+                className="rounded-xl bg-accent p-4 text-accent-foreground shadow-lg shadow-black/20 transition-opacity hover:opacity-90"
+                type="button"
+                onClick={() => scrollTestimonials(1)}
+              >
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
+                  <path
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
           <div className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-3">
-            {[
-              {
-                name: 'Elizabeth',
-                location: 'Chicago',
-                quote:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-              },
-              {
-                name: 'Catherine',
-                location: 'New York',
-                quote:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-              },
-              {
-                name: 'Victoria',
-                location: 'Los Angeles',
-                quote:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-              },
-            ].map((item) => (
+            {visibleTestimonials.map((item) => (
               <div
                 key={item.name}
                 className="rounded-[2rem] border border-border/30 bg-card p-10 shadow-xl"
               >
                 <div className="mb-6 flex gap-1 text-xl text-destructive">★★★★★</div>
                 <p className="mb-10 leading-relaxed text-muted-foreground">{item.quote}</p>
-                <div>
-                  <p className="font-bold text-foreground">{item.name}</p>
-                  <p className="text-sm text-muted-foreground">{item.location}</p>
+                <div className="flex items-end justify-between gap-4">
+                  <div>
+                    <p className="font-bold text-foreground">{item.name}</p>
+                    <p className="text-sm text-muted-foreground">{item.location}</p>
+                  </div>
+                  <img
+                    src={item.logoSrc}
+                    alt={item.logoAlt}
+                    className="h-6 w-6 shrink-0 object-contain"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             ))}
-          </div>
-          <div className="flex items-center justify-end">
-            <a
-              className="group flex items-center gap-1 font-semibold text-primary transition-colors hover:text-primary/80"
-              href="#"
-            >
-              Read more
-              <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24">
-                <path
-                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-              </svg>
-            </a>
           </div>
         </section>
 
@@ -309,12 +571,13 @@ export function HomePage() {
           <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <h2 className="mb-6 text-4xl font-bold text-foreground md:text-5xl">
-                Iconic must-try dishes
+                Small Plates
               </h2>
             </div>
             <div className="flex gap-4">
               <button
                 aria-label="Previous"
+                onClick={() => scrollPlates(-1)}
                 className="rounded-xl border border-border bg-popover p-4 transition-colors hover:bg-card"
               >
                 <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
@@ -329,6 +592,7 @@ export function HomePage() {
               </button>
               <button
                 aria-label="Next"
+                onClick={() => scrollPlates(1)}
                 className="rounded-xl bg-accent p-4 text-accent-foreground shadow-lg shadow-black/20 transition-opacity hover:opacity-90"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
@@ -344,7 +608,7 @@ export function HomePage() {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {craveWorthy.map((item) => (
+            {visiblePlates.map((item) => (
               <div
                 key={item.title}
                 className="group relative overflow-hidden rounded-[2rem] border border-border/30 bg-muted shadow-xl transition-all hover:shadow-2xl"
@@ -358,21 +622,10 @@ export function HomePage() {
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-8">
+                <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h3 className="whitespace-pre-line text-xl font-bold leading-tight text-white">
                     {item.title}
                   </h3>
-                  <button className="rounded-xl bg-accent p-3 text-accent-foreground shadow-lg transition-transform hover:scale-110">
-                    <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                      <path
-                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="3"
-                      />
-                    </svg>
-                  </button>
                 </div>
               </div>
             ))}
@@ -383,13 +636,14 @@ export function HomePage() {
           <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <h2 className="mb-2 text-4xl font-bold text-foreground md:text-5xl">
-                Main Courses
+                Entrees
               </h2>
               <div className="h-1.5 w-20 rounded-full bg-accent" />
             </div>
             <div className="flex gap-4">
               <button
                 aria-label="Previous"
+                onClick={() => scrollEntrees(-1)}
                 className="rounded-xl border border-border bg-popover p-4 transition-colors hover:bg-card"
               >
                 <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
@@ -404,6 +658,7 @@ export function HomePage() {
               </button>
               <button
                 aria-label="Next"
+                onClick={() => scrollEntrees(1)}
                 className="rounded-xl bg-accent p-4 text-accent-foreground shadow-lg shadow-black/20 transition-opacity hover:opacity-90"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
@@ -419,36 +674,24 @@ export function HomePage() {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {entrees.map((item) => (
+            {visibleEntrees.map((item) => (
               <div
-                key={item.name}
+                key={item.title}
                 className="group relative overflow-hidden rounded-[2rem] border border-border/30 bg-muted shadow-xl transition-all hover:shadow-2xl"
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
-                    src={stitchImages.entrees}
-                    alt={item.name}
+                    src={item.image}
+                    alt={item.title.replace('\n', ' ')}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-8">
-                  <div>
-                    <h3 className="text-xl font-bold leading-tight text-white">{item.name}</h3>
-                    <p className="mt-1 font-bold text-accent">{item.price}</p>
-                  </div>
-                  <button className="rounded-xl bg-accent p-3 text-accent-foreground shadow-lg transition-transform hover:scale-110">
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24">
-                      <path
-                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="3"
-                      />
-                    </svg>
-                  </button>
+                <div className="absolute bottom-0 left-0 right-0 p-8">
+                  <h3 className="whitespace-pre-line text-xl font-bold leading-tight text-white">
+                    {item.title}
+                  </h3>
                 </div>
               </div>
             ))}
@@ -456,76 +699,30 @@ export function HomePage() {
         </section>
 
         <section className="mx-auto mb-32 max-w-6xl px-4">
-          <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <div className="mb-12">
             <div className="max-w-2xl">
               <h2 className="mb-2 text-4xl font-bold text-foreground md:text-5xl">
-                Craft Cocktails &amp; Beverages
+                Beverages
               </h2>
               <div className="h-1.5 w-20 rounded-full bg-accent" />
             </div>
-            <div className="flex gap-4">
-              <button
-                aria-label="Previous"
-                className="rounded-xl border border-border bg-popover p-4 transition-colors hover:bg-card"
-              >
-                <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-              <button
-                aria-label="Next"
-                className="rounded-xl bg-accent p-4 text-accent-foreground shadow-lg shadow-black/20 transition-opacity hover:opacity-90"
-              >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-            </div>
           </div>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {drinks.map((item) => (
-              <div
-                key={item.name}
-                className="group relative overflow-hidden rounded-[2rem] border border-border/30 bg-muted shadow-xl transition-all hover:shadow-2xl"
-              >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={stitchImages.drinks}
-                    alt={item.name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-8">
-                  <div>
-                    <h3 className="text-xl font-bold leading-tight text-white">{item.name}</h3>
-                    <p className="mt-1 font-bold text-accent">{item.price}</p>
-                  </div>
-                  <button className="rounded-xl bg-accent p-3 text-accent-foreground shadow-lg transition-transform hover:scale-110">
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24">
-                      <path
-                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="3"
-                      />
-                    </svg>
-                  </button>
-                </div>
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+            {beverages.map((cat) => (
+              <div key={cat.category}>
+                <h3 className="mb-4 border-b border-border/40 pb-2 text-xl font-bold text-foreground">
+                  {cat.category}
+                </h3>
+                <ul className="space-y-2">
+                  {cat.items.map((item) => (
+                    <li
+                      key={item.name}
+                      className="text-base leading-relaxed text-muted-foreground"
+                    >
+                      {item.name}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>

@@ -8,12 +8,18 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="min-h-[200px] overflow-hidden rounded-xl border border-border/30 shadow-lg">
-            <img
-              src={assets.map}
-              alt="Map location"
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
+            <a
+              href="https://maps.apple/p/__Ih8~Qere5hB2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={assets.map}
+                alt="Map location — click to open in Apple Maps"
+                className="h-full w-full object-cover transition-opacity hover:opacity-90"
+                loading="lazy"
+              />
+            </a>
           </div>
           <div>
             <h4 className="mb-6 text-xl font-bold text-primary">Address</h4>
@@ -40,7 +46,9 @@ export function SiteFooter() {
           <div className="flex items-center gap-4">
             <a
               className="flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-background transition-colors hover:bg-primary"
-              href="#"
+              href="https://www.facebook.com/chiangmaistl1/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Facebook"
             >
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
