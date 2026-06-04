@@ -67,13 +67,110 @@ const craveWorthy = [
   },
 ]
 
+const entreeImages = {
+  khaoSoi: '/assets/entrees/Khao Soi 2.jpg',
+  gaengHungLay: '/assets/entrees/Gaeng Hung Lay.jpg',
+  kaengKeawWaanGai: '/assets/entrees/Kaeng Keaw Waan Gai.jpg',
+  padThaiShrimp: '/assets/entrees/Pad Thai Shrimp.png',
+  massamanBeef: '/assets/entrees/Massaman Beef.jpg',
+  padSeeEw: '/assets/entrees/Pad See Ew.png',
+  spicyBasil: '/assets/entrees/Spicy Basil.png',
+  namNgiaw: '/assets/entrees/Nam Ngiaw (1).jpg',
+  saiOua: '/assets/entrees/Sai Oua 2.jpg',
+  drunkenNoodle: '/assets/entrees/Drunken Noodle.png',
+  yellowCurry: '/assets/entrees/Yellow Curry.png',
+  larbKhua: '/assets/entrees/Larb Khua.jpg',
+  chickenNoodleSoup: '/assets/entrees/Chicken Noodle Soup.png',
+  eggplantTofu: '/assets/entrees/Eggplant Tofu.jpg',
+  friedRice: '/assets/entrees/Fried Rice.png',
+  graDookMoo: '/assets/entrees/Gra Dook Moo.jpg',
+  kaengDaeng: '/assets/entrees/Kaeng Daeng.png',
+  padWoonSen: '/assets/entrees/Pad Woon Sen.jpg',
+  suki: '/assets/entrees/Suki.PNG',
+  veggieTofuStirFry: '/assets/entrees/Veggie Tofu Stir Fry.png',
+}
+
 const entrees = [
-  { name: 'Braised Lamb Shank', price: '$34.00' },
-  { name: 'Grilled Salmon', price: '$28.00' },
-  { name: 'Truffle Risotto', price: '$26.00' },
-  { name: 'Prime Ribeye', price: '$42.00' },
-  { name: 'Cherry Roast Duck', price: '$32.00' },
-  { name: 'Butter Lobster', price: '$48.00' },
+  {
+    title: 'Khao Soi\n(Chiang Mai Curry Noodles)',
+    image: entreeImages.khaoSoi,
+  },
+  {
+    title: 'Gaeng Hung Lay\n(Northern Thai Curry)',
+    image: entreeImages.gaengHungLay,
+  },
+  {
+    title: 'Kaeng Keaw Waan Gai\n(Green Curry)',
+    image: entreeImages.kaengKeawWaanGai,
+  },
+  {
+    title: 'Pad Thai\nShrimp',
+    image: entreeImages.padThaiShrimp,
+  },
+  {
+    title: 'Massaman\nBeef',
+    image: entreeImages.massamanBeef,
+  },
+  {
+    title: 'Pad See Ew\n(Stir-Fried Noodles)',
+    image: entreeImages.padSeeEw,
+  },
+  {
+    title: 'Pad Kra Pao\n(Spicy Basil Stir Fry)',
+    image: entreeImages.spicyBasil,
+  },
+  {
+    title: 'Nam Ngiaw\n(Northern Noodle Soup)',
+    image: entreeImages.namNgiaw,
+  },
+  {
+    title: 'Sai Oua\n(Northern Thai Sausage)',
+    image: entreeImages.saiOua,
+  },
+  {
+    title: 'Pad Kee Mao\n(Drunken Noodle)',
+    image: entreeImages.drunkenNoodle,
+  },
+  {
+    title: 'Yellow\nCurry',
+    image: entreeImages.yellowCurry,
+  },
+  {
+    title: 'Larb Khua\n(Northern Thai Larb)',
+    image: entreeImages.larbKhua,
+  },
+  {
+    title: 'Chicken Noodle\nSoup',
+    image: entreeImages.chickenNoodleSoup,
+  },
+  {
+    title: 'Eggplant\nTofu',
+    image: entreeImages.eggplantTofu,
+  },
+  {
+    title: 'Fried\nRice',
+    image: entreeImages.friedRice,
+  },
+  {
+    title: 'Gra Dook Moo\n(Pork Ribs)',
+    image: entreeImages.graDookMoo,
+  },
+  {
+    title: 'Kaeng Daeng\n(Red Curry)',
+    image: entreeImages.kaengDaeng,
+  },
+  {
+    title: 'Pad Woon Sen\n(Glass Noodles)',
+    image: entreeImages.padWoonSen,
+  },
+  {
+    title: 'Suki\n(Thai Hot Pot)',
+    image: entreeImages.suki,
+  },
+  {
+    title: 'Veggie Tofu\nStir Fry',
+    image: entreeImages.veggieTofuStirFry,
+  },
 ]
 
 const drinks = [
@@ -200,9 +297,11 @@ const testimonials = [
 export function HomePage() {
   const [testimonialIndex, setTestimonialIndex] = useState(0)
   const [platesIndex, setPlatesIndex] = useState(0)
+  const [entreesIndex, setEntreesIndex] = useState(0)
 
   const testimonialPageSize = 3
   const platesPageSize = 3
+  const entreesPageSize = 6
 
   const visibleTestimonials = Array.from({ length: testimonialPageSize }, (_, offset) => {
     if (testimonials.length === 0) return undefined
@@ -210,6 +309,8 @@ export function HomePage() {
   }).filter((item): item is (typeof testimonials)[number] => Boolean(item))
 
   const visiblePlates = craveWorthy.slice(platesIndex, platesIndex + platesPageSize)
+
+  const visibleEntrees = entrees.slice(entreesIndex, entreesIndex + entreesPageSize)
 
   const scrollTestimonials = (direction: -1 | 1) => {
     if (testimonials.length === 0) return
@@ -224,6 +325,17 @@ export function HomePage() {
     setPlatesIndex((currentIndex) => {
       const pageSize = platesPageSize
       const totalPages = Math.ceil(craveWorthy.length / pageSize)
+      const currentPage = Math.floor(currentIndex / pageSize)
+      const nextPage = (currentPage + direction + totalPages) % totalPages
+      return nextPage * pageSize
+    })
+  }
+
+  const scrollEntrees = (direction: -1 | 1) => {
+    if (entrees.length === 0) return
+    setEntreesIndex((currentIndex) => {
+      const pageSize = entreesPageSize
+      const totalPages = Math.ceil(entrees.length / pageSize)
       const currentPage = Math.floor(currentIndex / pageSize)
       const nextPage = (currentPage + direction + totalPages) % totalPages
       return nextPage * pageSize
@@ -498,13 +610,14 @@ export function HomePage() {
           <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <h2 className="mb-2 text-4xl font-bold text-foreground md:text-5xl">
-                Main Courses
+                Entrees
               </h2>
               <div className="h-1.5 w-20 rounded-full bg-accent" />
             </div>
             <div className="flex gap-4">
               <button
                 aria-label="Previous"
+                onClick={() => scrollEntrees(-1)}
                 className="rounded-xl border border-border bg-popover p-4 transition-colors hover:bg-card"
               >
                 <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
@@ -519,6 +632,7 @@ export function HomePage() {
               </button>
               <button
                 aria-label="Next"
+                onClick={() => scrollEntrees(1)}
                 className="rounded-xl bg-accent p-4 text-accent-foreground shadow-lg shadow-black/20 transition-opacity hover:opacity-90"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
@@ -534,26 +648,28 @@ export function HomePage() {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {entrees.map((item) => (
+            {visibleEntrees.map((item) => (
               <div
-                key={item.name}
+                key={item.title}
                 className="group relative overflow-hidden rounded-[2rem] border border-border/30 bg-muted shadow-xl transition-all hover:shadow-2xl"
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
-                    src={stitchImages.entrees}
-                    alt={item.name}
+                    src={item.image}
+                    alt={item.title.replace('\n', ' ')}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-8">
-                  <div>
-                    <h3 className="text-xl font-bold leading-tight text-white">{item.name}</h3>
-                    <p className="mt-1 font-bold text-accent">{item.price}</p>
-                  </div>
-                  <button className="rounded-xl bg-accent p-3 text-accent-foreground shadow-lg transition-transform hover:scale-110">
+                  <h3 className="whitespace-pre-line text-xl font-bold leading-tight text-white">
+                    {item.title}
+                  </h3>
+                  <button
+                    onClick={() => scrollEntrees(1)}
+                    className="rounded-xl bg-accent p-3 text-accent-foreground shadow-lg transition-transform hover:scale-110"
+                  >
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24">
                       <path
                         d="M8.25 4.5l7.5 7.5-7.5 7.5"
