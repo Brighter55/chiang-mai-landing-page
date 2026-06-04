@@ -155,6 +155,30 @@ const testimonials = [
     quote:
       "The food is always excellent! Packed with flavor, so fresh and delicious. We've tried many different dishes and everything has been a hit. Highly recommend. Be sure to get an order of the jerky.",
   },
+  {
+    name: 'Teagen',
+    location: 'Grubhub',
+    logoSrc: reviewLogos.grubhubLogo,
+    logoAlt: 'grubhub logo',
+    quote:
+      'The food was the best I have had in a while! Thanks!',
+  },
+  {
+    name: 'Francesco P',
+    location: 'Yelp',
+    logoSrc: reviewLogos.yelpLogo,
+    logoAlt: 'yelp logo',
+    quote:
+      "Hands down the best coconut curry in the St. Louis area. I've been trying to find a place that has great coconut curry for many months to no avail. In fact, I went as far as driving to Columbia Illinois. The Kaeng Daeng here was fire and honestly nothing else was even close.\n\nExcited to try more dishes soon",
+  },
+  {
+    name: 'Lucy V',
+    location: 'Google Review',
+    logoSrc: reviewLogos.googleLogo,
+    logoAlt: 'Google logo',
+    quote:
+      "I've taken out and eaten in. Both times have been phenomenal. Khao soi and pad see ew are the way to go. Khao soi is my absolute favorite, this is the best one I've found in stl (second favorite fork & stix).\n\nLove supporting local, would absolutely recommend checking out!",
+  },
 ]
 
 export function HomePage() {
