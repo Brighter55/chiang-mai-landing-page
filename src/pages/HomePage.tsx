@@ -442,7 +442,7 @@ export function HomePage() {
             Experience Thai Cuisine
           </h1>
           <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Crafted with fresh ingredients, traditional recipes, and bold flavors that bring the taste of Thailand to every dish.
+            Crafted fresh, dish by dish, with traditional recipes and bold Thai flavors.
           </p>
           <OrderNowDropdown
             align="center"
