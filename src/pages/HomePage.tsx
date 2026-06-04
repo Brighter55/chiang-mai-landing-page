@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { OrderNowDropdown } from '@/components/order-now-dropdown'
@@ -16,6 +18,7 @@ const reviewLogos = {
   socialTop: '/assets/review logos/ian froeb logo.webp',
   googleLogo: '/assets/review logos/google.svg',
   yelpLogo: '/assets/review logos/yelp.svg',
+  restaurantGuruLogo: '/assets/review logos/restaurant guru logo.webp',
   uberEatsLogo: '/assets/review logos/uber eats logo.png',
   doordashLogo: '/assets/review logos/doordash logo.png',
   grubhubLogo: '/assets/review logos/grubhub logo.jpeg',
@@ -127,7 +130,51 @@ const reviewCarouselItems = [
   },
 ]
 
+const testimonials = [
+  {
+    name: 'Harper G',
+    location: 'Google Review',
+    logoSrc: reviewLogos.googleLogo,
+    logoAlt: 'Google logo',
+    quote:
+      'Chiang Mai is an absolute must-go if you like Thai food. I got the Khao Soi and it was the perfect flavor and it comes with 2 chicken legs that were tender and delicious. Highly highly recommend, if I could give more stars I would.',
+  },
+  {
+    name: 'Julie R',
+    location: 'Uber Eats',
+    logoSrc: reviewLogos.uberEatsLogo,
+    logoAlt: 'uber eats logo',
+    quote:
+      'Well packed, hot when it arrived.....oh so tasty',
+  },
+  {
+    name: 'Emily C',
+    location: 'Doordash',
+    logoSrc: reviewLogos.doordashLogo,
+    logoAlt: 'doordash logo',
+    quote:
+      "The food is always excellent! Packed with flavor, so fresh and delicious. We've tried many different dishes and everything has been a hit. Highly recommend. Be sure to get an order of the jerky.",
+  },
+]
+
 export function HomePage() {
+  const [testimonialIndex, setTestimonialIndex] = useState(0)
+
+  const testimonialPageSize = 3
+
+  const visibleTestimonials = Array.from({ length: testimonialPageSize }, (_, offset) => {
+    if (testimonials.length === 0) return undefined
+    return testimonials[(testimonialIndex + offset) % testimonials.length]
+  }).filter((item): item is (typeof testimonials)[number] => Boolean(item))
+
+  const scrollTestimonials = (direction: -1 | 1) => {
+    if (testimonials.length === 0) return
+
+    setTestimonialIndex(
+      (currentIndex) => (currentIndex + direction * testimonialPageSize + testimonials.length) % testimonials.length,
+    )
+  }
+
   return (
     <div className="stitch-theme min-h-screen bg-background text-foreground" id="top">
       <SiteHeader
@@ -244,64 +291,72 @@ export function HomePage() {
         </section>
 
         <section className="mx-auto mb-32 mt-24 max-w-6xl px-4">
-          <div className="mb-16 text-center">
-            <span className="mb-4 block text-sm font-bold uppercase tracking-[0.3em] text-destructive">
-              Testimonial
-            </span>
-            <h2 className="text-5xl font-bold text-foreground md:text-6xl">
-              What Our Customers Say
-            </h2>
+          <div className="mb-16 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl text-center md:text-left">
+              <span className="mb-4 block text-sm font-bold uppercase tracking-[0.3em] text-destructive">
+                Testimonial
+              </span>
+              <h2 className="text-5xl font-bold text-foreground md:text-6xl">
+                What Our Customers Say
+              </h2>
+            </div>
+            <div className="flex justify-center gap-4 md:justify-end">
+              <button
+                aria-label="Previous testimonials"
+                className="rounded-xl border border-border bg-popover p-4 transition-colors hover:bg-card"
+                type="button"
+                onClick={() => scrollTestimonials(-1)}
+              >
+                <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
+                  <path
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </button>
+              <button
+                aria-label="Next testimonials"
+                className="rounded-xl bg-accent p-4 text-accent-foreground shadow-lg shadow-black/20 transition-opacity hover:opacity-90"
+                type="button"
+                onClick={() => scrollTestimonials(1)}
+              >
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
+                  <path
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
           <div className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-3">
-            {[
-              {
-                name: 'Elizabeth',
-                location: 'Chicago',
-                quote:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-              },
-              {
-                name: 'Catherine',
-                location: 'New York',
-                quote:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-              },
-              {
-                name: 'Victoria',
-                location: 'Los Angeles',
-                quote:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-              },
-            ].map((item) => (
+            {visibleTestimonials.map((item) => (
               <div
                 key={item.name}
                 className="rounded-[2rem] border border-border/30 bg-card p-10 shadow-xl"
               >
                 <div className="mb-6 flex gap-1 text-xl text-destructive">★★★★★</div>
                 <p className="mb-10 leading-relaxed text-muted-foreground">{item.quote}</p>
-                <div>
-                  <p className="font-bold text-foreground">{item.name}</p>
-                  <p className="text-sm text-muted-foreground">{item.location}</p>
+                <div className="flex items-end justify-between gap-4">
+                  <div>
+                    <p className="font-bold text-foreground">{item.name}</p>
+                    <p className="text-sm text-muted-foreground">{item.location}</p>
+                  </div>
+                  <img
+                    src={item.logoSrc}
+                    alt={item.logoAlt}
+                    className="h-6 w-6 shrink-0 object-contain"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             ))}
-          </div>
-          <div className="flex items-center justify-end">
-            <a
-              className="group flex items-center gap-1 font-semibold text-primary transition-colors hover:text-primary/80"
-              href="#"
-            >
-              Read more
-              <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24">
-                <path
-                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-              </svg>
-            </a>
           </div>
         </section>
 
