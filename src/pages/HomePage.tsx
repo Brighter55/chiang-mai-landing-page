@@ -32,7 +32,6 @@ const stitchImages = {
   craveToast: '/stitch/stitch-image-02.jpg',
   craveSalad: '/stitch/stitch-image-11.jpg',
   entrees: '/stitch/stitch-image-10.jpg',
-  drinks: '/stitch/stitch-image-09.jpg',
   map: '/stitch/stitch-image-07.jpg',
 }
 
@@ -92,11 +91,11 @@ const entreeImages = {
 
 const entrees = [
   {
-    title: 'Khao Soi\n(Chiang Mai Curry Noodles)',
+    title: 'Khao Soi',
     image: entreeImages.khaoSoi,
   },
   {
-    title: 'Gaeng Hung Lay\n(Northern Thai Curry)',
+    title: 'Gaeng Hung Lay\n(Braised Curry Pork)',
     image: entreeImages.gaengHungLay,
   },
   {
@@ -112,15 +111,15 @@ const entrees = [
     image: entreeImages.massamanBeef,
   },
   {
-    title: 'Pad See Ew\n(Stir-Fried Noodles)',
+    title: 'Pad See Ew',
     image: entreeImages.padSeeEw,
   },
   {
-    title: 'Pad Kra Pao\n(Spicy Basil Stir Fry)',
+    title: 'Spicy Basil',
     image: entreeImages.spicyBasil,
   },
   {
-    title: 'Nam Ngiaw\n(Northern Noodle Soup)',
+    title: 'Nam Ngiaw',
     image: entreeImages.namNgiaw,
   },
   {
@@ -128,15 +127,15 @@ const entrees = [
     image: entreeImages.saiOua,
   },
   {
-    title: 'Pad Kee Mao\n(Drunken Noodle)',
+    title: 'Drunken Noodle',
     image: entreeImages.drunkenNoodle,
   },
   {
-    title: 'Yellow\nCurry',
+    title: 'Yellow Curry',
     image: entreeImages.yellowCurry,
   },
   {
-    title: 'Larb Khua\n(Northern Thai Larb)',
+    title: 'Larb Khua',
     image: entreeImages.larbKhua,
   },
   {
@@ -160,11 +159,11 @@ const entrees = [
     image: entreeImages.kaengDaeng,
   },
   {
-    title: 'Pad Woon Sen\n(Glass Noodles)',
+    title: 'Pad Woon Sen',
     image: entreeImages.padWoonSen,
   },
   {
-    title: 'Suki\n(Thai Hot Pot)',
+    title: 'Suki',
     image: entreeImages.suki,
   },
   {
@@ -173,11 +172,52 @@ const entrees = [
   },
 ]
 
-const drinks = [
-  { name: 'Old Fashioned', price: '$16.00' },
-  { name: 'Sparkling Paloma', price: '$15.00' },
-  { name: 'Espresso Martini', price: '$18.00' },
-  { name: 'Classic Mojito', price: '$14.00' },
+const beverages = [
+  {
+    category: 'Sake',
+    items: [
+      { name: 'Rihaku - Wandering Poet (300 mL)' },
+      { name: 'Dreamy Clouds (300 mL)' },
+      { name: 'Tozai Living Jewel (300 mL)' },
+      { name: 'Tozai Snow Maiden (Nigori) (300 mL)' },
+      { name: 'Tozai Night Swim' },
+    ],
+  },
+  {
+    category: 'Beer',
+    items: [
+      { name: 'Singha' },
+      { name: 'Tsingtao' },
+      { name: 'Sapporo' },
+      { name: 'Blue Moon' },
+    ],
+  },
+  {
+    category: 'Wine',
+    items: [
+      { name: 'Crane Lake Pinot Grigio (750 mL)' },
+      { name: 'Lucky Star Chardonnay (750 mL)' },
+      { name: 'Chasing Lions Cabernet (750 mL)' },
+      { name: "Pareto's Pinot Noir (750 mL)" },
+      { name: 'Crane Lake Pinot Grigio (175 mL)' },
+      { name: 'Crane Lake Chardonnay (175 mL)' },
+      { name: 'Crane Lake Cabernet (175 mL)' },
+      { name: 'Underwood Pinot Noir (250 mL)' },
+    ],
+  },
+  {
+    category: 'NA Beverages',
+    items: [
+      { name: 'Perrier' },
+      { name: 'Thai Iced Tea' },
+      { name: 'Thai Iced Coffee' },
+      { name: 'Coconut Juice' },
+      { name: 'Green tea (hot)' },
+      { name: 'Iced tea' },
+      { name: 'Soda' },
+      { name: 'Bottle water' },
+    ],
+  },
 ]
 
 const reviewCarouselItems = [
@@ -582,24 +622,10 @@ export function HomePage() {
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-8">
+                <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h3 className="whitespace-pre-line text-xl font-bold leading-tight text-white">
                     {item.title}
                   </h3>
-                  <button
-                    onClick={() => scrollPlates(1)}
-                    className="rounded-xl bg-accent p-3 text-accent-foreground shadow-lg transition-transform hover:scale-110"
-                  >
-                    <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                      <path
-                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="3"
-                      />
-                    </svg>
-                  </button>
                 </div>
               </div>
             ))}
@@ -662,24 +688,10 @@ export function HomePage() {
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-8">
+                <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h3 className="whitespace-pre-line text-xl font-bold leading-tight text-white">
                     {item.title}
                   </h3>
-                  <button
-                    onClick={() => scrollEntrees(1)}
-                    className="rounded-xl bg-accent p-3 text-accent-foreground shadow-lg transition-transform hover:scale-110"
-                  >
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24">
-                      <path
-                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="3"
-                      />
-                    </svg>
-                  </button>
                 </div>
               </div>
             ))}
@@ -687,76 +699,30 @@ export function HomePage() {
         </section>
 
         <section className="mx-auto mb-32 max-w-6xl px-4">
-          <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <div className="mb-12">
             <div className="max-w-2xl">
               <h2 className="mb-2 text-4xl font-bold text-foreground md:text-5xl">
-                Craft Cocktails &amp; Beverages
+                Beverages
               </h2>
               <div className="h-1.5 w-20 rounded-full bg-accent" />
             </div>
-            <div className="flex gap-4">
-              <button
-                aria-label="Previous"
-                className="rounded-xl border border-border bg-popover p-4 transition-colors hover:bg-card"
-              >
-                <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-              <button
-                aria-label="Next"
-                className="rounded-xl bg-accent p-4 text-accent-foreground shadow-lg shadow-black/20 transition-opacity hover:opacity-90"
-              >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-            </div>
           </div>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {drinks.map((item) => (
-              <div
-                key={item.name}
-                className="group relative overflow-hidden rounded-[2rem] border border-border/30 bg-muted shadow-xl transition-all hover:shadow-2xl"
-              >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={stitchImages.drinks}
-                    alt={item.name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-8">
-                  <div>
-                    <h3 className="text-xl font-bold leading-tight text-white">{item.name}</h3>
-                    <p className="mt-1 font-bold text-accent">{item.price}</p>
-                  </div>
-                  <button className="rounded-xl bg-accent p-3 text-accent-foreground shadow-lg transition-transform hover:scale-110">
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24">
-                      <path
-                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="3"
-                      />
-                    </svg>
-                  </button>
-                </div>
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+            {beverages.map((cat) => (
+              <div key={cat.category}>
+                <h3 className="mb-4 border-b border-border/40 pb-2 text-xl font-bold text-foreground">
+                  {cat.category}
+                </h3>
+                <ul className="space-y-2">
+                  {cat.items.map((item) => (
+                    <li
+                      key={item.name}
+                      className="text-base leading-relaxed text-muted-foreground"
+                    >
+                      {item.name}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
