@@ -36,18 +36,34 @@ const stitchImages = {
   map: '/stitch/stitch-image-07.jpg',
 }
 
+const smallPlatesImages = {
+  gaiTodd: '/assets/small_plates/Gai Todd.png',
+  somTum: '/assets/small_plates/Som Tum.jpg',
+  dumplings: '/assets/small_plates/Dumplings.jpg',
+  pohPiah: '/assets/small_plates/Poh Piah.jpg',
+  nuaSawaan: '/assets/small_plates/Nua Sawaan.jpg',
+}
+
 const craveWorthy = [
   {
-    title: 'Easy Chicken Dinners,\nDeliciously Quick',
-    image: stitchImages.craveChicken,
+    title: 'Gai Todd\n(Crispy Fried Chicken)',
+    image: smallPlatesImages.gaiTodd,
   },
   {
-    title: 'Sweet, Golden French\nToast Favorites!',
-    image: stitchImages.craveToast,
+    title: 'Som Tum\n(Green Papaya Salad)',
+    image: smallPlatesImages.somTum,
   },
   {
-    title: 'Fresh, Flavorful Salads\nwith Power!',
-    image: stitchImages.craveSalad,
+    title: 'Steamed\nDumplings',
+    image: smallPlatesImages.dumplings,
+  },
+  {
+    title: 'Poh Piah\n(Spring Rolls)',
+    image: smallPlatesImages.pohPiah,
+  },
+  {
+    title: 'Nua Sawaan\n(Beef Jerky)',
+    image: smallPlatesImages.nuaSawaan,
   },
 ]
 
@@ -183,13 +199,17 @@ const testimonials = [
 
 export function HomePage() {
   const [testimonialIndex, setTestimonialIndex] = useState(0)
+  const [platesIndex, setPlatesIndex] = useState(0)
 
   const testimonialPageSize = 3
+  const platesPageSize = 3
 
   const visibleTestimonials = Array.from({ length: testimonialPageSize }, (_, offset) => {
     if (testimonials.length === 0) return undefined
     return testimonials[(testimonialIndex + offset) % testimonials.length]
   }).filter((item): item is (typeof testimonials)[number] => Boolean(item))
+
+  const visiblePlates = craveWorthy.slice(platesIndex, platesIndex + platesPageSize)
 
   const scrollTestimonials = (direction: -1 | 1) => {
     if (testimonials.length === 0) return
@@ -197,6 +217,17 @@ export function HomePage() {
     setTestimonialIndex(
       (currentIndex) => (currentIndex + direction * testimonialPageSize + testimonials.length) % testimonials.length,
     )
+  }
+
+  const scrollPlates = (direction: -1 | 1) => {
+    if (craveWorthy.length === 0) return
+    setPlatesIndex((currentIndex) => {
+      const pageSize = platesPageSize
+      const totalPages = Math.ceil(craveWorthy.length / pageSize)
+      const currentPage = Math.floor(currentIndex / pageSize)
+      const nextPage = (currentPage + direction + totalPages) % totalPages
+      return nextPage * pageSize
+    })
   }
 
   return (
@@ -388,12 +419,13 @@ export function HomePage() {
           <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <h2 className="mb-6 text-4xl font-bold text-foreground md:text-5xl">
-                Iconic must-try dishes
+                Small Plates
               </h2>
             </div>
             <div className="flex gap-4">
               <button
                 aria-label="Previous"
+                onClick={() => scrollPlates(-1)}
                 className="rounded-xl border border-border bg-popover p-4 transition-colors hover:bg-card"
               >
                 <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
@@ -408,6 +440,7 @@ export function HomePage() {
               </button>
               <button
                 aria-label="Next"
+                onClick={() => scrollPlates(1)}
                 className="rounded-xl bg-accent p-4 text-accent-foreground shadow-lg shadow-black/20 transition-opacity hover:opacity-90"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
@@ -423,7 +456,7 @@ export function HomePage() {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {craveWorthy.map((item) => (
+            {visiblePlates.map((item) => (
               <div
                 key={item.title}
                 className="group relative overflow-hidden rounded-[2rem] border border-border/30 bg-muted shadow-xl transition-all hover:shadow-2xl"
@@ -441,7 +474,10 @@ export function HomePage() {
                   <h3 className="whitespace-pre-line text-xl font-bold leading-tight text-white">
                     {item.title}
                   </h3>
-                  <button className="rounded-xl bg-accent p-3 text-accent-foreground shadow-lg transition-transform hover:scale-110">
+                  <button
+                    onClick={() => scrollPlates(1)}
+                    className="rounded-xl bg-accent p-3 text-accent-foreground shadow-lg transition-transform hover:scale-110"
+                  >
                     <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
                       <path
                         d="M8.25 4.5l7.5 7.5-7.5 7.5"
