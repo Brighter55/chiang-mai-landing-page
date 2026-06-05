@@ -452,39 +452,18 @@ export function HomePage() {
         </div>
 
         <section className="mx-auto mt-20 max-w-6xl px-4" id="gallery">
-          <div className="group relative cursor-pointer">
-            <div className="overflow-hidden rounded-[2rem] border-4 border-border shadow-2xl">
-              <img
-                src={stitchImages.heroMain}
-                alt="Grilled chicken wrap with fresh ingredients"
-                className="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative flex h-40 w-40 items-center justify-center md:h-48 md:w-48">
-                <svg className="rotating-text absolute inset-0 h-full w-full" viewBox="0 0 100 100">
-                  <defs>
-                    <path
-                      id="circlePath"
-                      d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-                    />
-                  </defs>
-                  <text className="fill-white text-[8px] font-bold tracking-[0.2em] drop-shadow-lg">
-                    <textPath xlinkHref="#circlePath">
-                      Watch the film • Watch the film • Watch the film •
-                    </textPath>
-                  </text>
-                </svg>
-                <div className="rounded-full bg-muted p-6 shadow-2xl transition-transform group-hover:scale-110">
-                  <svg className="h-8 w-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                      d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 20.03c-1.25.687-2.779-.217-2.779-1.643V5.653z"
-                      fillRule="evenodd"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
+          <div className="overflow-hidden rounded-[2rem] border-4 border-border shadow-2xl">
+            <video
+              src="/assets/chiang-mai-hero-vid.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              disablePictureInPicture
+              disableRemotePlayback
+              className="aspect-video w-full object-cover"
+              style={{ pointerEvents: 'none' }}
+            />
           </div>
         </section>
 
