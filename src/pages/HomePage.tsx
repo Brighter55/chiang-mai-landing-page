@@ -18,21 +18,9 @@ const reviewLogos = {
   socialTop: '/assets/review logos/ian froeb logo.webp',
   googleLogo: '/assets/review logos/google.svg',
   yelpLogo: '/assets/review logos/yelp.svg',
-  restaurantGuruLogo: '/assets/review logos/restaurant guru logo.webp',
   uberEatsLogo: '/assets/review logos/uber eats logo.png',
   doordashLogo: '/assets/review logos/doordash logo.png',
   grubhubLogo: '/assets/review logos/grubhub logo.jpeg',
-}
-
-const stitchImages = {
-  heroLeft: '/stitch/stitch-image-01.jpg',
-  heroRight: '/stitch/stitch-image-08.jpg',
-  heroMain: '/stitch/stitch-image-13.jpg',
-  craveChicken: '/stitch/stitch-image-05.jpg',
-  craveToast: '/stitch/stitch-image-02.jpg',
-  craveSalad: '/stitch/stitch-image-11.jpg',
-  entrees: '/stitch/stitch-image-10.jpg',
-  map: '/stitch/stitch-image-07.jpg',
 }
 
 const smallPlatesImages = {
@@ -452,39 +440,18 @@ export function HomePage() {
         </div>
 
         <section className="mx-auto mt-20 max-w-6xl px-4" id="gallery">
-          <div className="group relative cursor-pointer">
-            <div className="overflow-hidden rounded-[2rem] border-4 border-border shadow-2xl">
-              <img
-                src={stitchImages.heroMain}
-                alt="Grilled chicken wrap with fresh ingredients"
-                className="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative flex h-40 w-40 items-center justify-center md:h-48 md:w-48">
-                <svg className="rotating-text absolute inset-0 h-full w-full" viewBox="0 0 100 100">
-                  <defs>
-                    <path
-                      id="circlePath"
-                      d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-                    />
-                  </defs>
-                  <text className="fill-white text-[8px] font-bold tracking-[0.2em] drop-shadow-lg">
-                    <textPath xlinkHref="#circlePath">
-                      Watch the film • Watch the film • Watch the film •
-                    </textPath>
-                  </text>
-                </svg>
-                <div className="rounded-full bg-muted p-6 shadow-2xl transition-transform group-hover:scale-110">
-                  <svg className="h-8 w-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                      d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 20.03c-1.25.687-2.779-.217-2.779-1.643V5.653z"
-                      fillRule="evenodd"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
+          <div className="overflow-hidden rounded-[2rem] border-4 border-border shadow-2xl">
+            <video
+              src="/assets/chiang-mai-hero-vid.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              disablePictureInPicture
+              disableRemotePlayback
+              className="aspect-video w-full object-cover"
+              style={{ pointerEvents: 'none' }}
+            />
           </div>
         </section>
 
@@ -507,63 +474,64 @@ export function HomePage() {
                 What Our Customers Say
               </h2>
             </div>
-            <div className="flex justify-center gap-4 md:justify-end">
-              <button
-                aria-label="Previous testimonials"
-                className="rounded-xl border border-border bg-popover p-4 transition-colors hover:bg-card"
-                type="button"
-                onClick={() => scrollTestimonials(-1)}
-              >
-                <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-              <button
-                aria-label="Next testimonials"
-                className="rounded-xl bg-accent p-4 text-accent-foreground shadow-lg shadow-black/20 transition-opacity hover:opacity-90"
-                type="button"
-                onClick={() => scrollTestimonials(1)}
-              >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-            </div>
+            {/* Navigation buttons moved outside the card grid */}
           </div>
-          <div className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-3">
-            {visibleTestimonials.map((item) => (
-              <div
-                key={item.name}
-                className="rounded-[2rem] border border-border/30 bg-card p-10 shadow-xl"
-              >
-                <div className="mb-6 flex gap-1 text-xl text-destructive">★★★★★</div>
-                <p className="mb-10 leading-relaxed text-muted-foreground">{item.quote}</p>
-                <div className="flex items-end justify-between gap-4">
-                  <div>
-                    <p className="font-bold text-foreground">{item.name}</p>
-                    <p className="text-sm text-muted-foreground">{item.location}</p>
+          <div className="relative mb-16">
+            <button
+              type="button"
+              aria-label="Previous testimonials"
+              className="absolute -left-4 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-outline/60 bg-background/90 text-primary shadow-lg backdrop-blur-sm transition-transform hover:scale-105 md:-left-16"
+              onClick={() => scrollTestimonials(-1)}
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M15 18l-6-6 6-6"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                />
+              </svg>
+            </button>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              {visibleTestimonials.map((item) => (
+                <div
+                  key={item.name}
+                  className="rounded-[2rem] border border-border/30 bg-card p-10 shadow-xl"
+                >
+                  <div className="mb-6 flex gap-1 text-xl text-destructive">★★★★★</div>
+                  <p className="mb-10 leading-relaxed text-muted-foreground">{item.quote}</p>
+                  <div className="flex items-end justify-between gap-4">
+                    <div>
+                      <p className="font-bold text-foreground">{item.name}</p>
+                      <p className="text-sm text-muted-foreground">{item.location}</p>
+                    </div>
+                    <img
+                      src={item.logoSrc}
+                      alt={item.logoAlt}
+                      className="h-6 w-6 shrink-0 object-contain"
+                      loading="lazy"
+                    />
                   </div>
-                  <img
-                    src={item.logoSrc}
-                    alt={item.logoAlt}
-                    className="h-6 w-6 shrink-0 object-contain"
-                    loading="lazy"
-                  />
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <button
+              type="button"
+              aria-label="Next testimonials"
+              className="absolute -right-4 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-outline/60 bg-background/90 text-primary shadow-lg backdrop-blur-sm transition-transform hover:scale-105 md:-right-16"
+              onClick={() => scrollTestimonials(1)}
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M9 6l6 6-6 6"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                />
+              </svg>
+            </button>
           </div>
         </section>
 
@@ -574,40 +542,26 @@ export function HomePage() {
                 Small Plates
               </h2>
             </div>
-            <div className="flex gap-4">
-              <button
-                aria-label="Previous"
-                onClick={() => scrollPlates(-1)}
-                className="rounded-xl border border-border bg-popover p-4 transition-colors hover:bg-card"
-              >
-                <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-              <button
-                aria-label="Next"
-                onClick={() => scrollPlates(1)}
-                className="rounded-xl bg-accent p-4 text-accent-foreground shadow-lg shadow-black/20 transition-opacity hover:opacity-90"
-              >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-            </div>
+            {/* Navigation buttons inside carousel wrapper */}
           </div>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="relative">
+            <button
+              type="button"
+              aria-label="Previous small plates"
+              className="absolute -left-4 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-outline/60 bg-background/90 text-primary shadow-lg backdrop-blur-sm transition-transform hover:scale-105 md:-left-16"
+              onClick={() => scrollPlates(-1)}
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M15 18l-6-6 6-6"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                />
+              </svg>
+            </button>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {visiblePlates.map((item) => (
               <div
                 key={item.title}
@@ -630,6 +584,23 @@ export function HomePage() {
               </div>
             ))}
           </div>
+            <button
+              type="button"
+              aria-label="Next small plates"
+              className="absolute -right-4 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-outline/60 bg-background/90 text-primary shadow-lg backdrop-blur-sm transition-transform hover:scale-105 md:-right-16"
+              onClick={() => scrollPlates(1)}
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M9 6l6 6-6 6"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                />
+              </svg>
+            </button>
+          </div>
         </section>
 
         <section className="mx-auto mb-32 max-w-6xl px-4">
@@ -640,40 +611,26 @@ export function HomePage() {
               </h2>
               <div className="h-1.5 w-20 rounded-full bg-accent" />
             </div>
-            <div className="flex gap-4">
-              <button
-                aria-label="Previous"
-                onClick={() => scrollEntrees(-1)}
-                className="rounded-xl border border-border bg-popover p-4 transition-colors hover:bg-card"
-              >
-                <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-              <button
-                aria-label="Next"
-                onClick={() => scrollEntrees(1)}
-                className="rounded-xl bg-accent p-4 text-accent-foreground shadow-lg shadow-black/20 transition-opacity hover:opacity-90"
-              >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-            </div>
+            {/* Navigation buttons inside carousel wrapper */}
           </div>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="relative">
+            <button
+              type="button"
+              aria-label="Previous entrees"
+              className="absolute -left-4 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-outline/60 bg-background/90 text-primary shadow-lg backdrop-blur-sm transition-transform hover:scale-105 md:-left-16"
+              onClick={() => scrollEntrees(-1)}
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M15 18l-6-6 6-6"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                />
+              </svg>
+            </button>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {visibleEntrees.map((item) => (
               <div
                 key={item.title}
@@ -695,6 +652,23 @@ export function HomePage() {
                 </div>
               </div>
             ))}
+          </div>
+            <button
+              type="button"
+              aria-label="Next entrees"
+              className="absolute -right-4 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-outline/60 bg-background/90 text-primary shadow-lg backdrop-blur-sm transition-transform hover:scale-105 md:-right-16"
+              onClick={() => scrollEntrees(1)}
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M9 6l6 6-6 6"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                />
+              </svg>
+            </button>
           </div>
         </section>
 
