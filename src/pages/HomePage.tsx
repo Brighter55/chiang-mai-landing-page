@@ -18,21 +18,9 @@ const reviewLogos = {
   socialTop: '/assets/review logos/ian froeb logo.webp',
   googleLogo: '/assets/review logos/google.svg',
   yelpLogo: '/assets/review logos/yelp.svg',
-  restaurantGuruLogo: '/assets/review logos/restaurant guru logo.webp',
   uberEatsLogo: '/assets/review logos/uber eats logo.png',
   doordashLogo: '/assets/review logos/doordash logo.png',
   grubhubLogo: '/assets/review logos/grubhub logo.jpeg',
-}
-
-const stitchImages = {
-  heroLeft: '/stitch/stitch-image-01.jpg',
-  heroRight: '/stitch/stitch-image-08.jpg',
-  heroMain: '/stitch/stitch-image-13.jpg',
-  craveChicken: '/stitch/stitch-image-05.jpg',
-  craveToast: '/stitch/stitch-image-02.jpg',
-  craveSalad: '/stitch/stitch-image-11.jpg',
-  entrees: '/stitch/stitch-image-10.jpg',
-  map: '/stitch/stitch-image-07.jpg',
 }
 
 const smallPlatesImages = {

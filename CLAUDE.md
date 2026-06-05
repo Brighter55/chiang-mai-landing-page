@@ -27,7 +27,6 @@ src/
 ├── main.tsx                       # Entry point: BrowserRouter + StrictMode
 ├── App.tsx                        # Route definitions (<Routes> with / and /gallery)
 ├── index.css                      # Tailwind import, CSS custom properties theme, keyframe animations
-├── App.css                        # Legacy (unused by current pages)
 ├── pages/
 │   ├── HomePage.tsx               # Landing page — hero, review carousel, testimonials, menu sections
 │   └── GalleryPage.tsx            # 3D carousel gallery with category filter tabs
@@ -38,7 +37,6 @@ src/
 │   ├── logo-carousel.tsx          # Infinite-marquee review logos with ratings
 │   └── ui/                        # shadcn-ui-style primitives
 │       ├── button.tsx
-│       ├── card.tsx
 │       └── dropdown-menu.tsx
 └── lib/
     └── utils.ts                   # cn() helper (clsx + tailwind-merge)
