@@ -507,63 +507,64 @@ export function HomePage() {
                 What Our Customers Say
               </h2>
             </div>
-            <div className="flex justify-center gap-4 md:justify-end">
-              <button
-                aria-label="Previous testimonials"
-                className="rounded-xl border border-border bg-popover p-4 transition-colors hover:bg-card"
-                type="button"
-                onClick={() => scrollTestimonials(-1)}
-              >
-                <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-              <button
-                aria-label="Next testimonials"
-                className="rounded-xl bg-accent p-4 text-accent-foreground shadow-lg shadow-black/20 transition-opacity hover:opacity-90"
-                type="button"
-                onClick={() => scrollTestimonials(1)}
-              >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-            </div>
+            {/* Navigation buttons moved outside the card grid */}
           </div>
-          <div className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-3">
-            {visibleTestimonials.map((item) => (
-              <div
-                key={item.name}
-                className="rounded-[2rem] border border-border/30 bg-card p-10 shadow-xl"
-              >
-                <div className="mb-6 flex gap-1 text-xl text-destructive">★★★★★</div>
-                <p className="mb-10 leading-relaxed text-muted-foreground">{item.quote}</p>
-                <div className="flex items-end justify-between gap-4">
-                  <div>
-                    <p className="font-bold text-foreground">{item.name}</p>
-                    <p className="text-sm text-muted-foreground">{item.location}</p>
+          <div className="relative mb-16">
+            <button
+              type="button"
+              aria-label="Previous testimonials"
+              className="absolute -left-4 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-outline/60 bg-background/90 text-primary shadow-lg backdrop-blur-sm transition-transform hover:scale-105 md:-left-16"
+              onClick={() => scrollTestimonials(-1)}
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M15 18l-6-6 6-6"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                />
+              </svg>
+            </button>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              {visibleTestimonials.map((item) => (
+                <div
+                  key={item.name}
+                  className="rounded-[2rem] border border-border/30 bg-card p-10 shadow-xl"
+                >
+                  <div className="mb-6 flex gap-1 text-xl text-destructive">★★★★★</div>
+                  <p className="mb-10 leading-relaxed text-muted-foreground">{item.quote}</p>
+                  <div className="flex items-end justify-between gap-4">
+                    <div>
+                      <p className="font-bold text-foreground">{item.name}</p>
+                      <p className="text-sm text-muted-foreground">{item.location}</p>
+                    </div>
+                    <img
+                      src={item.logoSrc}
+                      alt={item.logoAlt}
+                      className="h-6 w-6 shrink-0 object-contain"
+                      loading="lazy"
+                    />
                   </div>
-                  <img
-                    src={item.logoSrc}
-                    alt={item.logoAlt}
-                    className="h-6 w-6 shrink-0 object-contain"
-                    loading="lazy"
-                  />
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <button
+              type="button"
+              aria-label="Next testimonials"
+              className="absolute -right-4 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-outline/60 bg-background/90 text-primary shadow-lg backdrop-blur-sm transition-transform hover:scale-105 md:-right-16"
+              onClick={() => scrollTestimonials(1)}
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M9 6l6 6-6 6"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                />
+              </svg>
+            </button>
           </div>
         </section>
 
@@ -574,40 +575,26 @@ export function HomePage() {
                 Small Plates
               </h2>
             </div>
-            <div className="flex gap-4">
-              <button
-                aria-label="Previous"
-                onClick={() => scrollPlates(-1)}
-                className="rounded-xl border border-border bg-popover p-4 transition-colors hover:bg-card"
-              >
-                <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-              <button
-                aria-label="Next"
-                onClick={() => scrollPlates(1)}
-                className="rounded-xl bg-accent p-4 text-accent-foreground shadow-lg shadow-black/20 transition-opacity hover:opacity-90"
-              >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-            </div>
+            {/* Navigation buttons inside carousel wrapper */}
           </div>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="relative">
+            <button
+              type="button"
+              aria-label="Previous small plates"
+              className="absolute -left-4 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-outline/60 bg-background/90 text-primary shadow-lg backdrop-blur-sm transition-transform hover:scale-105 md:-left-16"
+              onClick={() => scrollPlates(-1)}
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M15 18l-6-6 6-6"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                />
+              </svg>
+            </button>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {visiblePlates.map((item) => (
               <div
                 key={item.title}
@@ -630,6 +617,23 @@ export function HomePage() {
               </div>
             ))}
           </div>
+            <button
+              type="button"
+              aria-label="Next small plates"
+              className="absolute -right-4 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-outline/60 bg-background/90 text-primary shadow-lg backdrop-blur-sm transition-transform hover:scale-105 md:-right-16"
+              onClick={() => scrollPlates(1)}
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M9 6l6 6-6 6"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                />
+              </svg>
+            </button>
+          </div>
         </section>
 
         <section className="mx-auto mb-32 max-w-6xl px-4">
@@ -640,40 +644,26 @@ export function HomePage() {
               </h2>
               <div className="h-1.5 w-20 rounded-full bg-accent" />
             </div>
-            <div className="flex gap-4">
-              <button
-                aria-label="Previous"
-                onClick={() => scrollEntrees(-1)}
-                className="rounded-xl border border-border bg-popover p-4 transition-colors hover:bg-card"
-              >
-                <svg className="h-5 w-5 text-foreground" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-              <button
-                aria-label="Next"
-                onClick={() => scrollEntrees(1)}
-                className="rounded-xl bg-accent p-4 text-accent-foreground shadow-lg shadow-black/20 transition-opacity hover:opacity-90"
-              >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-                  <path
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-            </div>
+            {/* Navigation buttons inside carousel wrapper */}
           </div>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="relative">
+            <button
+              type="button"
+              aria-label="Previous entrees"
+              className="absolute -left-4 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-outline/60 bg-background/90 text-primary shadow-lg backdrop-blur-sm transition-transform hover:scale-105 md:-left-16"
+              onClick={() => scrollEntrees(-1)}
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M15 18l-6-6 6-6"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                />
+              </svg>
+            </button>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {visibleEntrees.map((item) => (
               <div
                 key={item.title}
@@ -695,6 +685,23 @@ export function HomePage() {
                 </div>
               </div>
             ))}
+          </div>
+            <button
+              type="button"
+              aria-label="Next entrees"
+              className="absolute -right-4 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-outline/60 bg-background/90 text-primary shadow-lg backdrop-blur-sm transition-transform hover:scale-105 md:-right-16"
+              onClick={() => scrollEntrees(1)}
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M9 6l6 6-6 6"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                />
+              </svg>
+            </button>
           </div>
         </section>
 
