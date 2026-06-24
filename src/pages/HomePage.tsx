@@ -31,10 +31,22 @@ const smallPlatesImages = {
   nuaSawaan: '/assets/small_plates/Nua Sawaan.jpg',
 }
 
-const craveWorthy = [
+const dietaryIcons = {
+  vegan: '/assets/vegan.png',
+  glutenFree: '/assets/gluten-free.png',
+}
+
+type FoodItem = {
+  title: string
+  image: string
+  tags?: ('vegan' | 'gluten-free')[]
+}
+
+const craveWorthy: FoodItem[] = [
   {
     title: 'Gai Todd\n(Crispy Fried Chicken)',
     image: smallPlatesImages.gaiTodd,
+    tags: ['gluten-free'],
   },
   {
     title: 'Som Tum\n(Green Papaya Salad)',
@@ -47,10 +59,12 @@ const craveWorthy = [
   {
     title: 'Poh Piah\n(Spring Rolls)',
     image: smallPlatesImages.pohPiah,
+    tags: ['vegan'],
   },
   {
     title: 'Nua Sawaan\n(Beef Jerky)',
     image: smallPlatesImages.nuaSawaan,
+    tags: ['gluten-free'],
   },
 ]
 
@@ -77,7 +91,7 @@ const entreeImages = {
   veggieTofuStirFry: '/assets/entrees/Veggie Tofu Stir Fry.png',
 }
 
-const entrees = [
+const entrees: FoodItem[] = [
   {
     title: 'Khao Soi',
     image: entreeImages.khaoSoi,
@@ -89,38 +103,47 @@ const entrees = [
   {
     title: 'Kaeng Keaw Waan Gai\n(Green Curry)',
     image: entreeImages.kaengKeawWaanGai,
+    tags: ['vegan', 'gluten-free'],
   },
   {
     title: 'Pad Thai\nShrimp',
     image: entreeImages.padThaiShrimp,
+    tags: ['gluten-free'],
   },
   {
     title: 'Massaman\nBeef',
     image: entreeImages.massamanBeef,
+    tags: ['gluten-free'],
   },
   {
     title: 'Pad See Ew',
     image: entreeImages.padSeeEw,
+    tags: ['vegan'],
   },
   {
     title: 'Spicy Basil',
     image: entreeImages.spicyBasil,
+    tags: ['vegan'],
   },
   {
     title: 'Nam Ngiaw',
     image: entreeImages.namNgiaw,
+    tags: ['gluten-free'],
   },
   {
     title: 'Sai Oua\n(Northern Thai Sausage)',
     image: entreeImages.saiOua,
+    tags: ['gluten-free'],
   },
   {
     title: 'Drunken Noodle',
     image: entreeImages.drunkenNoodle,
+    tags: ['vegan'],
   },
   {
     title: 'Yellow Curry',
     image: entreeImages.yellowCurry,
+    tags: ['gluten-free'],
   },
   {
     title: 'Larb Khua',
@@ -129,10 +152,12 @@ const entrees = [
   {
     title: 'Chicken Noodle\nSoup',
     image: entreeImages.chickenNoodleSoup,
+    tags: ['gluten-free'],
   },
   {
     title: 'Eggplant\nTofu',
     image: entreeImages.eggplantTofu,
+    tags: ['vegan'],
   },
   {
     title: 'Fried\nRice',
@@ -145,6 +170,7 @@ const entrees = [
   {
     title: 'Kaeng Daeng\n(Red Curry)',
     image: entreeImages.kaengDaeng,
+    tags: ['vegan', 'gluten-free'],
   },
   {
     title: 'Pad Woon Sen',
@@ -153,10 +179,12 @@ const entrees = [
   {
     title: 'Suki',
     image: entreeImages.suki,
+    tags: ['vegan', 'gluten-free'],
   },
   {
     title: 'Veggie Tofu\nStir Fry',
     image: entreeImages.veggieTofuStirFry,
+    tags: ['vegan'],
   },
 ]
 
@@ -579,6 +607,14 @@ export function HomePage() {
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h3 className="whitespace-pre-line text-xl font-bold leading-tight text-white">
                     {item.title}
+                    {item.tags?.map((tag) => (
+                      <img
+                        key={tag}
+                        src={tag === 'vegan' ? dietaryIcons.vegan : dietaryIcons.glutenFree}
+                        alt={tag === 'vegan' ? 'Vegan' : 'Gluten Free'}
+                        className="ml-1.5 inline-block h-10 w-10 align-middle"
+                      />
+                    ))}
                   </h3>
                 </div>
               </div>
@@ -648,6 +684,14 @@ export function HomePage() {
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h3 className="whitespace-pre-line text-xl font-bold leading-tight text-white">
                     {item.title}
+                    {item.tags?.map((tag) => (
+                      <img
+                        key={tag}
+                        src={tag === 'vegan' ? dietaryIcons.vegan : dietaryIcons.glutenFree}
+                        alt={tag === 'vegan' ? 'Vegan' : 'Gluten Free'}
+                        className="ml-1.5 inline-block h-10 w-10 align-middle"
+                      />
+                    ))}
                   </h3>
                 </div>
               </div>

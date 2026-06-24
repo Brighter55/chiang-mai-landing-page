@@ -8,9 +8,22 @@ const assetImages = {
   logo: '/assets/logo-white.png',
 }
 
+const dietaryIcons = {
+  vegan: '/assets/vegan.png',
+  glutenFree: '/assets/gluten-free.png',
+}
+
+type GalleryItem = {
+  label: string
+  image: string
+  category: string
+  cardSize: string
+  tags?: ('vegan' | 'gluten-free')[]
+}
+
 const categoryFilters = ['All', 'Small Plates', 'Entrees']
 
-const galleryItems = [
+const galleryItems: GalleryItem[] = [
   {
     label: 'Dumplings',
     image: '/assets/small_plates/Dumplings.jpg',
@@ -22,18 +35,21 @@ const galleryItems = [
     image: '/assets/small_plates/Gai Todd.png',
     category: 'Small Plates',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['gluten-free'],
   },
   {
     label: 'Nua Sawaan',
     image: '/assets/small_plates/Nua Sawaan.jpg',
     category: 'Small Plates',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['gluten-free'],
   },
   {
     label: 'Poh Piah',
     image: '/assets/small_plates/Poh Piah.jpg',
     category: 'Small Plates',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['vegan'],
   },
   {
     label: 'Som Tum',
@@ -46,18 +62,21 @@ const galleryItems = [
     image: '/assets/entrees/Chicken Noodle Soup.png',
     category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['gluten-free'],
   },
   {
     label: 'Drunken Noodle',
     image: '/assets/entrees/Drunken Noodle.png',
     category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['vegan'],
   },
   {
     label: 'Eggplant Tofu',
     image: '/assets/entrees/Eggplant Tofu.jpg',
     category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['vegan'],
   },
   {
     label: 'Fried Rice',
@@ -82,12 +101,14 @@ const galleryItems = [
     image: '/assets/entrees/Kaeng Daeng.png',
     category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['vegan', 'gluten-free'],
   },
   {
     label: 'Kaeng Keaw Waan Gai',
     image: '/assets/entrees/Kaeng Keaw Waan Gai.jpg',
     category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['vegan', 'gluten-free'],
   },
   {
     label: 'Khao Soi',
@@ -106,24 +127,28 @@ const galleryItems = [
     image: '/assets/entrees/Massaman Beef.jpg',
     category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['gluten-free'],
   },
   {
     label: 'Nam Ngiaw',
     image: '/assets/entrees/Nam Ngiaw (1).jpg',
     category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['gluten-free'],
   },
   {
     label: 'Pad See Ew',
     image: '/assets/entrees/Pad See Ew.png',
     category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['vegan'],
   },
   {
     label: 'Pad Thai Shrimp',
     image: '/assets/entrees/Pad Thai Shrimp.png',
     category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['gluten-free'],
   },
   {
     label: 'Pad Woon Sen',
@@ -136,30 +161,35 @@ const galleryItems = [
     image: '/assets/entrees/Sai Oua.jpg',
     category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['gluten-free'],
   },
   {
     label: 'Spicy Basil',
     image: '/assets/entrees/Spicy Basil.png',
     category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['vegan'],
   },
   {
     label: 'Suki',
     image: '/assets/entrees/Suki.PNG',
     category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['vegan', 'gluten-free'],
   },
   {
     label: 'Veggie Tofu Stir Fry',
     image: '/assets/entrees/Veggie Tofu Stir Fry.png',
     category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['vegan'],
   },
   {
     label: 'Yellow Curry',
     image: '/assets/entrees/Yellow Curry.png',
     category: 'Entrees',
     cardSize: 'w-[300px] h-[300px] md:h-[500px] md:w-[500px]',
+    tags: ['gluten-free'],
   },
 ]
 
@@ -297,8 +327,16 @@ export function GalleryPage() {
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/15 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                     <div className="absolute inset-0 flex items-end p-4 md:p-5">
-                      <div className="rounded-full bg-black/45 px-3 py-2 text-xs font-semibold tracking-[0.2em] text-primary backdrop-blur-md">
-                        {item.label}
+                      <div className="flex items-center gap-1 rounded-full bg-black/45 px-3 py-2 text-xs font-semibold tracking-[0.2em] text-primary backdrop-blur-md">
+                        <span>{item.label}</span>
+                        {item.tags?.map((tag) => (
+                          <img
+                            key={tag}
+                            src={tag === 'vegan' ? dietaryIcons.vegan : dietaryIcons.glutenFree}
+                            alt={tag === 'vegan' ? 'Vegan' : 'Gluten Free'}
+                            className="h-10 w-10 flex-shrink-0"
+                          />
+                        ))}
                       </div>
                     </div>
                   </article>
