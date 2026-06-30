@@ -40,6 +40,7 @@ type FoodItem = {
   title: string
   image: string
   tags?: ('vegan' | 'gluten-free')[]
+  description?: string
 }
 
 const craveWorthy: FoodItem[] = [
@@ -47,24 +48,29 @@ const craveWorthy: FoodItem[] = [
     title: 'Gai Todd\n(Crispy Fried Chicken)',
     image: smallPlatesImages.gaiTodd,
     tags: ['gluten-free'],
+    description: 'Golden, crunchy fried chicken marinated in Thai herbs and spices, delivering a satisfying crisp exterior with juicy, tender meat inside. Served with a sweet chili dipping sauce.',
   },
   {
     title: 'Som Tum\n(Green Papaya Salad)',
     image: smallPlatesImages.somTum,
+    description: 'A salad of shredded green papaya, pounded with tomatoes, carrots, green beans, and chilies in a tangy lime and fish sauce, topped with peanuts.',
   },
   {
     title: 'Steamed\nDumplings',
     image: smallPlatesImages.dumplings,
+    description: 'Thin-skinned dumplings filled with a seasoned mixture of chicken and vegetables, served with a housemade dumpling sauce that has sweet, sour, and mildly salty taste.',
   },
   {
     title: 'Poh Piah\n(Spring Rolls)',
     image: smallPlatesImages.pohPiah,
     tags: ['vegan'],
+    description: 'Crispy rolls stuffed with vegetables, cheese, pork, or shrimps, fried to a perfect golden crunch. Served with housemade sweet & sour sauce.',
   },
   {
     title: 'Nua Sawaan\n(Beef Jerky)',
     image: smallPlatesImages.nuaSawaan,
     tags: ['gluten-free'],
+    description: 'Beef strips marinated in a sweet and savory blend of coriander, sea salt, and palm sugar, then fried for a deeply caramelized bite.',
   },
 ]
 
@@ -95,96 +101,116 @@ const entrees: FoodItem[] = [
   {
     title: 'Khao Soi',
     image: entreeImages.khaoSoi,
+    description: 'A rich, coconut-milk curry broth ladled over egg noodles and topped with crispy fried noodles, pickled mustard greens, red onions, and a squeeze of lime.',
   },
   {
     title: 'Gaeng Hung Lay\n(Braised Curry Pork)',
     image: entreeImages.gaengHungLay,
+    description: 'A slow-braised Northern Thai curry with tender pork simmered in a fragrant blend of garlic, ginger, turmeric, and tamarind until deeply rich and aromatic. Served with steamed rice.',
   },
   {
     title: 'Kaeng Keaw Waan Gai\n(Green Curry)',
     image: entreeImages.kaengKeawWaanGai,
     tags: ['vegan', 'gluten-free'],
+    description: 'A coconut milk curry with (chicken, shrimps, tofu, or vegetables), asian eggplant, and fresh basil, simmered in a green curry paste. Served with steamed rice.',
   },
   {
     title: 'Pad Thai\nShrimp',
     image: entreeImages.padThaiShrimp,
     tags: ['gluten-free'],
+    description: 'Rice noodles tossed in a tangy-sweet tamarind-based sauce with eggs, (chicken, shrimps, tofu, or vegetables), crunchy bean sprouts, and green onions, all finished with a handful of crushed peanuts and a squeeze of fresh lime.',
   },
   {
     title: 'Massaman\nBeef',
     image: entreeImages.massamanBeef,
     tags: ['gluten-free'],
+    description: 'A slow-cooked curry with beef, potatoes, and onions in a rich, mildly spiced coconut milk fragrant with cinnamon, and roasted cashew nuts. Served with steamed rice.',
   },
   {
     title: 'Pad See Ew',
     image: entreeImages.padSeeEw,
     tags: ['vegan'],
+    description: 'Wide flat rice noodles wok-tossed over high heat with egg, (asian green veggies or broccoli), and (chicken, shrimps, tofu, or vegetables) in a smoky, slightly sweet stir fry sauce.',
   },
   {
     title: 'Spicy Basil',
     image: entreeImages.spicyBasil,
     tags: ['vegan'],
+    description: '(chicken, shrimps, tofu, or vegetables) stir-fried with fresh chilies, garlic, and thai basil in a stir fry sauce. Served with steamed rice.',
   },
   {
     title: 'Nam Ngiaw',
     image: entreeImages.namNgiaw,
     tags: ['gluten-free'],
+    description: 'A Northern Thai rice vermicelli soup with a rich, tangy tomato and dried chili broth, slow-simmered with pork ribs and tofu, topped with red onions, cabbage, pickle, and bean sprouts.',
   },
   {
     title: 'Sai Oua\n(Northern Thai Sausage)',
     image: entreeImages.saiOua,
     tags: ['gluten-free'],
+    description: 'Fragrant grilled pork sausage packed with lemongrass, galangal, kaffir lime leaves, and red curry paste, delivering a smoky bite. Served with steamed rice.',
   },
   {
     title: 'Drunken Noodle',
     image: entreeImages.drunkenNoodle,
     tags: ['vegan'],
+    description: 'Bold and spicy flat rice noodles stir-fried with fresh chilies, garlic, basil, peppers, bean sprouts, and (chicken, shrimps, tofu, or vegetables) in a stir fry sauce.',
   },
   {
     title: 'Yellow Curry',
     image: entreeImages.yellowCurry,
     tags: ['gluten-free'],
+    description: 'A mild and comforting curry with a golden turmeric and coconut milk base, simmered with tender chicken thighs, potatoes, and onions for a warming, lightly spiced bowl. Served with steamed rice.',
   },
   {
     title: 'Larb Khua',
     image: entreeImages.larbKhua,
+    description: 'A dry-style Northern Thai minced meat salad toasted in a hot wok with dried chilies, red onions, and aromatic spices. Served with steamed rice.',
   },
   {
     title: 'Chicken Noodle\nSoup',
     image: entreeImages.chickenNoodleSoup,
     tags: ['gluten-free'],
+    description: 'A soothing, clear broth with tender sliced chicken, rice noodles, and fragrant herbs.',
   },
   {
     title: 'Eggplant\nTofu',
     image: entreeImages.eggplantTofu,
     tags: ['vegan'],
+    description: 'Asian eggplant, onions, peppers, and golden deep-fried tofu stir-fried in bean sauce. Served with steamed rice.',
   },
   {
     title: 'Fried\nRice',
     image: entreeImages.friedRice,
+    description: 'Classic Thai fried rice wok-tossed with egg, onions, and (chicken, shrimps, tofu, or vegetables).',
   },
   {
     title: 'Gra Dook Moo\n(Pork Ribs)',
     image: entreeImages.graDookMoo,
+    description: 'Tender pork baby back ribs slow-roasted with a generous crust of garlic, black pepper, and coriander root until caramelized and fragrant. Served with steamed rice.',
   },
   {
     title: 'Kaeng Daeng\n(Red Curry)',
     image: entreeImages.kaengDaeng,
     tags: ['vegan', 'gluten-free'],
+    description: 'A classic Thai red curry with coconut milk, bamboo shoots, peppers, and fresh basil. Served with steamed rice.',
   },
   {
     title: 'Pad Woon Sen',
     image: entreeImages.padWoonSen,
+    description: 'Glass noodles stir-fried with egg, vegetables, and (chicken, shrimps, tofu, or vegetables) in a light, savory sauce.',
   },
   {
     title: 'Suki',
     image: entreeImages.suki,
     tags: ['vegan', 'gluten-free'],
+    description: 'Glass noodles, two proteins of choice, eggs, and vegetables, all wok-tossed and generously coated in a sweet, tangy, and spicy red suki sauce.',
   },
   {
     title: 'Veggie Tofu\nStir Fry',
     image: entreeImages.veggieTofuStirFry,
     tags: ['vegan'],
+    description: 'A colorful medley of mixed vegetables and (chicken, shrimps, tofu, or vegetables) wok-tossed in stir fry sauce. Served with steamed rice.',
   },
 ]
 
@@ -354,6 +380,8 @@ export function HomePage() {
   const [testimonialIndex, setTestimonialIndex] = useState(0)
   const [platesIndex, setPlatesIndex] = useState(0)
   const [entreesIndex, setEntreesIndex] = useState(0)
+  const [flippedPlate, setFlippedPlate] = useState<string | null>(null)
+  const [flippedEntree, setFlippedEntree] = useState<string | null>(null)
 
   const testimonialPageSize = 3
   const platesPageSize = 3
@@ -378,6 +406,7 @@ export function HomePage() {
 
   const scrollPlates = (direction: -1 | 1) => {
     if (craveWorthy.length === 0) return
+    setFlippedPlate(null)
     setPlatesIndex((currentIndex) => {
       const pageSize = platesPageSize
       const totalPages = Math.ceil(craveWorthy.length / pageSize)
@@ -389,6 +418,7 @@ export function HomePage() {
 
   const scrollEntrees = (direction: -1 | 1) => {
     if (entrees.length === 0) return
+    setFlippedEntree(null)
     setEntreesIndex((currentIndex) => {
       const pageSize = entreesPageSize
       const totalPages = Math.ceil(entrees.length / pageSize)
@@ -593,29 +623,68 @@ export function HomePage() {
             {visiblePlates.map((item) => (
               <div
                 key={item.title}
-                className="group relative overflow-hidden rounded-[2rem] border border-border/30 bg-muted shadow-xl transition-all hover:shadow-2xl"
+                className={`relative cursor-pointer rounded-[2rem] border border-border/30 bg-muted shadow-xl transition-shadow hover:shadow-2xl ${flippedPlate === item.title ? 'card-flipped' : ''}`}
+                style={{ perspective: '1200px' }}
+                onClick={() => item.description && setFlippedPlate(flippedPlate === item.title ? null : item.title)}
               >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title.replace('\n', ' ')}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h3 className="whitespace-pre-line text-xl font-bold leading-tight text-white">
-                    {item.title}
-                    {item.tags?.map((tag) => (
-                      <img
-                        key={tag}
-                        src={tag === 'vegan' ? dietaryIcons.vegan : dietaryIcons.glutenFree}
-                        alt={tag === 'vegan' ? 'Vegan' : 'Gluten Free'}
-                        className="ml-1.5 inline-block h-10 w-10 align-middle"
-                      />
-                    ))}
-                  </h3>
+                <div className="card-inner relative" style={{ aspectRatio: '4 / 3' }}>
+                  {/* ── Front ── */}
+                  <div className="card-front" style={{ borderRadius: '2rem' }}>
+                    <img
+                      src={item.image}
+                      alt={item.title.replace('\n', ' ')}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-8">
+                      <h3 className="whitespace-pre-line text-xl font-bold leading-tight text-white">
+                        {item.title}
+                        {item.tags?.map((tag) => (
+                          <img
+                            key={tag}
+                            src={tag === 'vegan' ? dietaryIcons.vegan : dietaryIcons.glutenFree}
+                            alt={tag === 'vegan' ? 'Vegan' : 'Gluten Free'}
+                            className="ml-1.5 inline-block h-10 w-10 align-middle"
+                          />
+                        ))}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* ── Back ── */}
+                  <div className="card-back" style={{ borderRadius: '2rem' }}>
+                    <div className="mb-3 flex items-center gap-2">
+                      <h3 className="whitespace-pre-line text-xl font-bold text-primary md:text-2xl">
+                        {item.title}
+                      </h3>
+                      {item.tags?.map((tag) => (
+                        <img
+                          key={tag}
+                          src={tag === 'vegan' ? dietaryIcons.vegan : dietaryIcons.glutenFree}
+                          alt={tag === 'vegan' ? 'Vegan' : 'Gluten Free'}
+                          className="h-8 w-8 flex-shrink-0"
+                        />
+                      ))}
+                    </div>
+
+                    {item.description ? (
+                      <p className="max-w-xs text-sm leading-relaxed text-muted-foreground md:text-base">
+                        {item.description}
+                      </p>
+                    ) : (
+                      <p className="text-sm italic text-muted-foreground/50">
+                        Description coming soon
+                      </p>
+                    )}
+
+                    <div className="mt-6 flex items-center gap-1.5 text-xs text-muted-foreground/40">
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h10a4 4 0 0 1 4 4v2M3 10l4-4m-4 4 4 4" />
+                      </svg>
+                      <span>Tap to flip back</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -670,29 +739,68 @@ export function HomePage() {
             {visibleEntrees.map((item) => (
               <div
                 key={item.title}
-                className="group relative overflow-hidden rounded-[2rem] border border-border/30 bg-muted shadow-xl transition-all hover:shadow-2xl"
+                className={`relative cursor-pointer rounded-[2rem] border border-border/30 bg-muted shadow-xl transition-shadow hover:shadow-2xl ${flippedEntree === item.title ? 'card-flipped' : ''}`}
+                style={{ perspective: '1200px' }}
+                onClick={() => item.description && setFlippedEntree(flippedEntree === item.title ? null : item.title)}
               >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title.replace('\n', ' ')}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h3 className="whitespace-pre-line text-xl font-bold leading-tight text-white">
-                    {item.title}
-                    {item.tags?.map((tag) => (
-                      <img
-                        key={tag}
-                        src={tag === 'vegan' ? dietaryIcons.vegan : dietaryIcons.glutenFree}
-                        alt={tag === 'vegan' ? 'Vegan' : 'Gluten Free'}
-                        className="ml-1.5 inline-block h-10 w-10 align-middle"
-                      />
-                    ))}
-                  </h3>
+                <div className="card-inner relative" style={{ aspectRatio: '4 / 3' }}>
+                  {/* ── Front ── */}
+                  <div className="card-front" style={{ borderRadius: '2rem' }}>
+                    <img
+                      src={item.image}
+                      alt={item.title.replace('\n', ' ')}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-8">
+                      <h3 className="whitespace-pre-line text-xl font-bold leading-tight text-white">
+                        {item.title}
+                        {item.tags?.map((tag) => (
+                          <img
+                            key={tag}
+                            src={tag === 'vegan' ? dietaryIcons.vegan : dietaryIcons.glutenFree}
+                            alt={tag === 'vegan' ? 'Vegan' : 'Gluten Free'}
+                            className="ml-1.5 inline-block h-10 w-10 align-middle"
+                          />
+                        ))}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* ── Back ── */}
+                  <div className="card-back" style={{ borderRadius: '2rem' }}>
+                    <div className="mb-3 flex items-center gap-2">
+                      <h3 className="whitespace-pre-line text-xl font-bold text-primary md:text-2xl">
+                        {item.title}
+                      </h3>
+                      {item.tags?.map((tag) => (
+                        <img
+                          key={tag}
+                          src={tag === 'vegan' ? dietaryIcons.vegan : dietaryIcons.glutenFree}
+                          alt={tag === 'vegan' ? 'Vegan' : 'Gluten Free'}
+                          className="h-8 w-8 flex-shrink-0"
+                        />
+                      ))}
+                    </div>
+
+                    {item.description ? (
+                      <p className="max-w-xs text-sm leading-relaxed text-muted-foreground md:text-base">
+                        {item.description}
+                      </p>
+                    ) : (
+                      <p className="text-sm italic text-muted-foreground/50">
+                        Description coming soon
+                      </p>
+                    )}
+
+                    <div className="mt-6 flex items-center gap-1.5 text-xs text-muted-foreground/40">
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h10a4 4 0 0 1 4 4v2M3 10l4-4m-4 4 4 4" />
+                      </svg>
+                      <span>Tap to flip back</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
