@@ -4,6 +4,7 @@ import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { OrderNowDropdown } from '@/components/order-now-dropdown'
 import { LogoCarousel } from '@/components/logo-carousel'
+import { ImagePopup } from '@/components/image-popup'
 
 const assetImages = {
   logo: '/assets/logo-white.png',
@@ -382,6 +383,7 @@ export function HomePage() {
   const [entreesIndex, setEntreesIndex] = useState(0)
   const [flippedPlate, setFlippedPlate] = useState<string | null>(null)
   const [flippedEntree, setFlippedEntree] = useState<string | null>(null)
+  const [showSpecialPopup, setShowSpecialPopup] = useState(true)
 
   const testimonialPageSize = 3
   const platesPageSize = 3
@@ -856,6 +858,13 @@ export function HomePage() {
       </main>
 
       <SiteFooter />
+
+      <ImagePopup
+        src="/assets/special_days/forth_july.jpeg"
+        alt="4th of July celebration at Chiang Mai Thai Bistro"
+        open={showSpecialPopup}
+        onClose={() => setShowSpecialPopup(false)}
+      />
     </div>
   )
 }
