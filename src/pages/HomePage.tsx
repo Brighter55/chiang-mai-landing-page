@@ -860,8 +860,8 @@ export function HomePage() {
       <SiteFooter />
 
       <ImagePopup
-        src="/assets/special_days/forth_july.jpeg"
-        alt="4th of July celebration at Chiang Mai Thai Bistro"
+        src="/assets/special_days/mango_sticky_rice.png"
+        alt="Mango Sticky Rice - Thai Dessert Special"
         open={showSpecialPopup}
         onClose={() => setShowSpecialPopup(false)}
       />
