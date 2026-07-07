@@ -5,6 +5,7 @@ import { SiteFooter } from '@/components/site-footer'
 import { OrderNowDropdown } from '@/components/order-now-dropdown'
 import { LogoCarousel } from '@/components/logo-carousel'
 import { ImagePopup } from '@/components/image-popup'
+import { SmsOptInForm } from '@/components/sms-opt-in-form'
 
 const assetImages = {
   logo: '/assets/logo-white.png',
@@ -854,6 +855,10 @@ export function HomePage() {
               </div>
             ))}
           </div>
+        </section>
+
+        <section className="mx-auto mb-32 max-w-md px-4">
+          <SmsOptInForm />
         </section>
       </main>
 
