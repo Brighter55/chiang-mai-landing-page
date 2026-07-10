@@ -27,7 +27,7 @@ export function TermsPage() {
 
       <main className="mx-auto max-w-3xl px-4 py-16 md:py-24">
         <h1 className="mb-2 text-4xl font-extrabold text-foreground md:text-5xl">Terms of Service</h1>
-        <p className="mb-10 text-sm text-muted-foreground"><strong>Last Updated: July 7, 2025</strong></p>
+        <p className="mb-10 text-sm text-muted-foreground"><strong>Last Updated: July 10, 2026</strong></p>
 
         <div className="space-y-8 text-muted-foreground">
           <section>
