@@ -29,7 +29,8 @@ export function SmsOptInForm() {
 
     setSubmitting(true)
     try {
-      const res = await fetch('/api/opt-in/', {
+      const apiUrl = import.meta.env.VITE_API_URL || '/api'
+      const res = await fetch(`${apiUrl}/opt-in/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phone: phoneStr }),
