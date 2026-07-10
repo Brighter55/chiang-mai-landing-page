@@ -91,7 +91,7 @@ export function SmsOptInForm() {
           id="sms-phone"
           value={phone}
           onChange={(value) => { setPhone(value); setError('') }}
-          placeholder="(314) 555-0123"
+          placeholder="(314) 961-8889"
         />
       </div>
 
