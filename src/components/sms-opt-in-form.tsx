@@ -1,7 +1,9 @@
 import { type FormEvent, useState } from 'react'
+import { isValidPhoneNumber } from 'react-phone-number-input'
+import { PhoneInput, type Value } from '@/components/ui/phone-input'
 
 export function SmsOptInForm() {
-  const [phone, setPhone] = useState('')
+  const [phone, setPhone] = useState<Value>('')
   const [consent, setConsent] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
@@ -11,8 +13,17 @@ export function SmsOptInForm() {
     e.preventDefault()
     setError('')
 
-    if (phone.trim() && !consent) {
+    const phoneStr = (phone ?? '').toString().trim()
+
+    // Require consent when a phone number is provided
+    if (phoneStr && !consent) {
       setError('You must agree to receive SMS messages if you provide a phone number.')
+      return
+    }
+
+    // Validate phone if provided
+    if (phoneStr && !isValidPhoneNumber(phoneStr)) {
+      setError('Please enter a valid phone number.')
       return
     }
 
@@ -21,14 +32,28 @@ export function SmsOptInForm() {
       const res = await fetch('/api/opt-in/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone: phone.trim() || '' }),
+        body: JSON.stringify({ phone: phoneStr }),
       })
-      if (!res.ok && res.status !== 201) {
-        throw new Error('Request failed')
+
+      if (!res.ok) {
+        let message = 'Something went wrong. Please try again.'
+        try {
+          const data = await res.json()
+          // DRF field-level errors come as { "phone": ["..."] }
+          if (data?.phone?.[0]) {
+            message = data.phone[0]
+          } else if (data?.detail) {
+            message = data.detail
+          }
+        } catch {
+          // couldn't parse JSON — use default message
+        }
+        throw new Error(message)
       }
+
       setSubmitted(true)
-    } catch {
-      setError('Something went wrong. Please try again.')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
     } finally {
       setSubmitting(false)
     }
@@ -61,13 +86,11 @@ export function SmsOptInForm() {
         <label htmlFor="sms-phone" className="mb-1.5 block text-sm font-medium text-foreground">
           Phone Number <span className="text-muted-foreground">(optional)</span>
         </label>
-        <input
+        <PhoneInput
           id="sms-phone"
-          type="tel"
           value={phone}
-          onChange={(e) => { setPhone(e.target.value); setError('') }}
+          onChange={(value) => { setPhone(value); setError('') }}
           placeholder="(314) 555-0123"
-          className="w-full rounded-xl border border-border/50 bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
         />
       </div>
 
