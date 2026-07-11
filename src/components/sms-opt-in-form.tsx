@@ -70,7 +70,7 @@ export function SmsOptInForm() {
         </div>
         <h3 className="text-xl font-bold text-foreground">You&apos;re In!</h3>
         <p className="mt-2 text-sm text-muted-foreground">
-          Thanks for subscribing to SMS updates from Chiang Mai.
+          You&apos;ll receive a text when your pickup order is ready.
         </p>
       </div>
     )
@@ -80,7 +80,7 @@ export function SmsOptInForm() {
     <form onSubmit={handleSubmit} className="rounded-[2rem] border border-border/30 bg-card p-8 shadow-xl">
       <h3 className="mb-2 text-xl font-bold text-foreground">Get SMS Updates</h3>
       <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-        Be the first to know about specials, events, and new menu items — and get notified when your order is ready for pickup.
+        Get notified by text message when your pickup order is ready.
       </p>
 
       <div className="mb-4">
@@ -104,7 +104,7 @@ export function SmsOptInForm() {
             className="mt-1 h-4 w-4 rounded border-border/50 accent-primary flex-shrink-0"
           />
           <span className="text-xs leading-relaxed text-muted-foreground">
-            By checking this box, I agree to receive text messages from Chiang Mai, including order-ready pickup notifications and recurring marketing communications such as specials, events, and new menu items. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for assistance. Consent is not required to make a purchase.{' '}
+            By checking this box, I agree to receive text messages from Chiang Mai for order-ready pickup notifications. Message and data rates may apply. Reply STOP to opt out or HELP for assistance. Consent is not required to make a purchase.{' '}
             <a href="/privacy" className="underline hover:text-primary">Privacy Policy</a>
             {' '}&middot;{' '}
             <a href="/terms" className="underline hover:text-primary">Terms of Service</a>
