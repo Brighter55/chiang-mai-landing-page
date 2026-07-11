@@ -56,11 +56,6 @@ export function SiteFooter() {
               </svg>
             </a>
           </div>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            <a href="/privacy" className="transition-colors hover:text-primary">Privacy Policy</a>
-            <span className="text-border/40">|</span>
-            <a href="/terms" className="transition-colors hover:text-primary">Terms of Service</a>
-          </div>
         </div>
       </div>
     </footer>

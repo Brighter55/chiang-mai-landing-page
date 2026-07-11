@@ -42,15 +42,14 @@ export function TermsPage() {
             <p>Chiang Mai Restaurant operates an SMS program that includes:</p>
             <ul className="ml-6 mt-2 list-disc space-y-1">
               <li>Order-ready notifications: a single SMS sent when your pickup order is ready for pickup</li>
-              <li>Marketing messages: recurring SMS messages including specials, promotions, events, and new menu items</li>
             </ul>
           </section>
 
           <section>
             <h3 className="mb-2 text-xl font-semibold text-foreground">Consent</h3>
             <p>
-              By providing your phone number and checking the opt-in box on our website, you consent to receive both
-              transactional and marketing SMS messages from Chiang Mai Restaurant. Consent is not required as a
+              By providing your phone number and checking the opt-in box on our website, you consent to receive
+              transactional SMS messages from Chiang Mai Restaurant. Consent is not required as a
               condition of purchase.
             </p>
           </section>
@@ -58,8 +57,7 @@ export function TermsPage() {
           <section>
             <h3 className="mb-2 text-xl font-semibold text-foreground">Message Frequency</h3>
             <p>
-              Message frequency varies. You will receive one (1) message per order for order notifications.
-              Marketing messages vary based on promotions and events.
+              Message frequency: You will receive one (1) message per order for order-ready notifications.
             </p>
           </section>
 

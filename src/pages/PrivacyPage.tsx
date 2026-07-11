@@ -51,7 +51,6 @@ export function PrivacyPage() {
             <p>Your phone number may be used to send you:</p>
             <ul className="ml-6 mt-2 list-disc space-y-1">
               <li>A single SMS notification when your pickup order is ready</li>
-              <li>Recurring marketing messages including specials, promotions, events, and new menu items</li>
             </ul>
           </section>
 
@@ -66,8 +65,7 @@ export function PrivacyPage() {
           <section>
             <h3 className="mb-2 text-xl font-semibold text-foreground">Message Frequency</h3>
             <p>
-              Message frequency varies. You will receive one (1) SMS per order for order-ready notifications.
-              Marketing message frequency varies based on promotions and events.
+              Message frequency: You will receive one (1) SMS per order for order-ready notifications.
             </p>
           </section>
 
