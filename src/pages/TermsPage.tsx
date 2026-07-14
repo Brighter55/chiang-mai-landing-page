@@ -31,15 +31,15 @@ export function TermsPage() {
 
         <div className="space-y-8 text-muted-foreground">
           <section>
-            <h2 className="mb-4 text-2xl font-bold text-foreground">Chiang Mai Restaurant – SMS Terms of Service</h2>
+            <h2 className="mb-4 text-2xl font-bold text-foreground">Chiang Mai – SMS Terms of Service</h2>
             <p>
-              By providing your phone number and checking the consent box on our website, you agree to these Terms of Service.
+              BEST THAI STL LLC, doing business as Chiang Mai (&ldquo;Chiang Mai,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;), operates an SMS program. By providing your phone number and checking the consent box on our website, you agree to these Terms of Service.
             </p>
           </section>
 
           <section>
             <h3 className="mb-2 text-xl font-semibold text-foreground">Program Description</h3>
-            <p>Chiang Mai Restaurant operates an SMS program that includes:</p>
+            <p>Chiang Mai operates an SMS program that includes:</p>
             <ul className="ml-6 mt-2 list-disc space-y-1">
               <li>Order-ready notifications: a single SMS sent when your pickup order is ready for pickup</li>
             </ul>
@@ -49,7 +49,7 @@ export function TermsPage() {
             <h3 className="mb-2 text-xl font-semibold text-foreground">Consent</h3>
             <p>
               By providing your phone number and checking the opt-in box on our website, you consent to receive
-              transactional SMS messages from Chiang Mai Restaurant. Consent is not required as a
+              transactional SMS messages from Chiang Mai. Consent is not required as a
               condition of purchase.
             </p>
           </section>
@@ -97,7 +97,7 @@ export function TermsPage() {
 
           <section>
             <h3 className="mb-2 text-xl font-semibold text-foreground">Contact Us</h3>
-            <p>Chiang Mai Restaurant</p>
+            <p>Chiang Mai (BEST THAI STL LLC)</p>
             <p>
               <a href="mailto:bestthaistl@gmail.com" className="text-primary underline hover:opacity-80">bestthaistl@gmail.com</a>
             </p>

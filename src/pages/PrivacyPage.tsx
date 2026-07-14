@@ -31,9 +31,9 @@ export function PrivacyPage() {
 
         <div className="space-y-8 text-muted-foreground">
           <section>
-            <h2 className="mb-4 text-2xl font-bold text-foreground">Chiang Mai Restaurant – SMS Privacy Policy</h2>
+            <h2 className="mb-4 text-2xl font-bold text-foreground">Chiang Mai – SMS Privacy Policy</h2>
             <p>
-              Chiang Mai Restaurant (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) is committed to protecting your privacy.
+              BEST THAI STL LLC, doing business as Chiang Mai (&ldquo;Chiang Mai,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;), is committed to protecting your privacy.
               This policy describes how we collect and use your information in connection with our SMS program.
             </p>
           </section>
@@ -92,7 +92,7 @@ export function PrivacyPage() {
 
           <section>
             <h3 className="mb-2 text-xl font-semibold text-foreground">Contact Us</h3>
-            <p>Chiang Mai Restaurant</p>
+            <p>Chiang Mai (BEST THAI STL LLC)</p>
             <p>
               <a href="mailto:bestthaistl@gmail.com" className="text-primary underline hover:opacity-80">bestthaistl@gmail.com</a>
             </p>

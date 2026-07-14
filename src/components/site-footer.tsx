@@ -57,6 +57,9 @@ export function SiteFooter() {
             </a>
           </div>
         </div>
+        <p className="mt-4 text-center text-xs text-muted-foreground">
+          © 2026 BEST THAI STL LLC. All rights reserved.
+        </p>
       </div>
     </footer>
   )
