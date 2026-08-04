@@ -6,6 +6,7 @@ import { OrderNowDropdown } from '@/components/order-now-dropdown'
 import { LogoCarousel } from '@/components/logo-carousel'
 import { ImagePopup } from '@/components/image-popup'
 import { SmsOptInForm } from '@/components/sms-opt-in-form'
+import { usePageMeta } from '@/hooks/use-page-meta'
 
 const assetImages = {
   logo: '/assets/logo-white.png',
@@ -379,6 +380,11 @@ const testimonials = [
 ]
 
 export function HomePage() {
+  usePageMeta({
+    title: 'Chiang Mai Thai Restaurant | Thai Food in St. Louis',
+    description: 'Chiang Mai serves authentic Thai cuisine in St. Louis. Dine in, takeout, or delivery',
+  })
+
   const [testimonialIndex, setTestimonialIndex] = useState(0)
   const [platesIndex, setPlatesIndex] = useState(0)
   const [entreesIndex, setEntreesIndex] = useState(0)

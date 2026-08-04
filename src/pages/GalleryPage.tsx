@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { OrderNowDropdown } from '@/components/order-now-dropdown'
+import { usePageMeta } from '@/hooks/use-page-meta'
 
 const assetImages = {
   logo: '/assets/logo-white.png',
@@ -245,6 +246,12 @@ const getCarouselItemStyle = (offset: number) => {
 }
 
 export function GalleryPage() {
+  usePageMeta({
+    title: 'Gallery | Chiang Mai Thai Restaurant in St. Louis',
+    description:
+      "Browse photos of Chiang Mai's authentic Thai dishes — small plates, entrees and more, served fresh in St. Louis.",
+  })
+
   const [activeFilter, setActiveFilter] = useState('All')
   const [activeIndex, setActiveIndex] = useState(2)
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null)
@@ -298,9 +305,9 @@ export function GalleryPage() {
 
       <main className="grow pb-24 pt-16 md:pb-28 md:pt-20">
         <section className="px-4 text-center md:px-12">
-          <p className="mb-4 text-5xl font-semibold uppercase tracking-[0.35em] text-primary">
+          <h1 className="mb-4 text-5xl font-semibold uppercase tracking-[0.35em] text-primary">
             Gallery
-          </p>
+          </h1>
         </section>
 
         <section className="mt-10 flex flex-wrap justify-center gap-3 px-4 md:mt-12 md:px-12">

@@ -1,12 +1,20 @@
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { OrderNowDropdown } from '@/components/order-now-dropdown'
+import { usePageMeta } from '@/hooks/use-page-meta'
 
 const assetImages = {
   logo: '/assets/logo-white.png',
 }
 
 export function TermsPage() {
+  usePageMeta({
+    title: 'Terms of Service | Chiang Mai Thai Restaurant',
+    description:
+      'Chiang Mai (BEST THAI STL LLC) SMS terms of service — order-ready notifications, consent, opt-out, and more.',
+    noindex: true,
+  })
+
   return (
     <div className="stitch-theme min-h-screen bg-background text-foreground" id="top">
       <SiteHeader
