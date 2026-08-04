@@ -509,7 +509,7 @@ export function HomePage() {
         <section className="mx-auto mt-20 max-w-6xl px-4" id="gallery">
           <div className="overflow-hidden rounded-[2rem] border-4 border-border shadow-2xl">
             <video
-              src="/assets/chiang-mai-hero-vid.mp4"
+              src="/assets/landing%20vid%20v2.mp4"
               autoPlay
               loop
               muted
