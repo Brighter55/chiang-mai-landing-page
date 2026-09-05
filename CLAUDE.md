@@ -17,39 +17,57 @@ npm run preview   # Preview production build locally
 - **Bundler:** Vite 8 + `@vitejs/plugin-react` (Oxc-based)
 - **Styling:** Tailwind CSS v4 via `@tailwindcss/vite` plugin + `tw-animate-css`
 - **Routing:** `react-router-dom` v7 with `<BrowserRouter>` — simple flat route tree (no nested layouts)
-- **UI primitives:** Radix UI (`@radix-ui/react-dropdown-menu`, `@radix-ui/react-slot`) + `class-variance-authority` — following shadcn/ui patterns in `src/components/ui/`
+- **UI primitives:** Radix UI (`@radix-ui/react-dropdown-menu`, `@radix-ui/react-popover`, `@radix-ui/react-scroll-area`, `@radix-ui/react-slot`) + `class-variance-authority` — following shadcn/ui patterns in `src/components/ui/`
+- **Forms:** `react-phone-number-input` (phone/SMS opt-in) + `cmdk` (command menu)
 - **Icons:** `lucide-react`
+- **Path alias:** `@/*` → `src/*` (defined in `vite.config.ts` and `tsconfig.app.json`)
 
 ## Project Structure
 
 ```
 src/
 ├── main.tsx                       # Entry point: BrowserRouter + StrictMode
-├── App.tsx                        # Route definitions (<Routes> with / and /gallery)
-├── index.css                      # Tailwind import, CSS custom properties theme, keyframe animations
+├── App.tsx                        # Route definitions — /, /gallery, /privacy, /terms, * → /
+├── index.css                      # Tailwind import, CSS custom property theme tokens, keyframe animations
+├── hooks/
+│   └── use-page-meta.ts           # Per-page <title> + meta description, optional robots noindex
 ├── pages/
-│   ├── HomePage.tsx               # Landing page — hero, review carousel, testimonials, menu sections
-│   └── GalleryPage.tsx            # 3D carousel gallery with category filter tabs
+│   ├── HomePage.tsx               # Landing page — hero video, review-logo marquee, testimonials, menu, SMS opt-in
+│   ├── GalleryPage.tsx            # 3D carousel gallery with category filter tabs
+│   ├── PrivacyPage.tsx            # Legal page (robots noindex)
+│   └── TermsPage.tsx              # Legal page (robots noindex)
 ├── components/
 │   ├── site-header.tsx            # Sticky top nav with logo, links, primary action slot
 │   ├── site-footer.tsx            # Map, address, hours, contact, social links
 │   ├── order-now-dropdown.tsx     # "Order Now" button → Radix dropdown with delivery links
-│   ├── logo-carousel.tsx          # Infinite-marquee review logos with ratings
+│   ├── logo-carousel.tsx          # Infinite-marquee review logos
+│   ├── image-popup.tsx            # Lightbox modal for full-size dish photos
+│   ├── sms-opt-in-form.tsx        # Phone opt-in for SMS updates (react-phone-number-input)
 │   └── ui/                        # shadcn-ui-style primitives
 │       ├── button.tsx
-│       └── dropdown-menu.tsx
+│       ├── command.tsx
+│       ├── dropdown-menu.tsx
+│       ├── input.tsx
+│       ├── phone-input.tsx
+│       ├── popover.tsx
+│       └── scroll-area.tsx
 └── lib/
     └── utils.ts                   # cn() helper (clsx + tailwind-merge)
-
-stitch_landing_page/               # Original static HTML/CSS design mockup (reference)
-stitch_gallery_page/               # Original gallery page static design mockup (reference)
 ```
 
 ## Architecture & Routing
 
-- **Flat routing:** `"/"` → HomePage, `"/gallery"` → GalleryPage, `"*"` redirects to `"/"`.
-- Both pages share `SiteHeader` + `SiteFooter` + `OrderNowDropdown` directly (no layout component).
-- Navigation links have `href` pointing to `#menu`, `#footer`, and `/gallery`.
+- **Flat routing:** `"/"` → HomePage, `"/gallery"` → GalleryPage, `"/privacy"` → PrivacyPage, `"/terms"` → TermsPage, `"*"` redirects to `"/"`.
+- Every page shares `SiteHeader` + `SiteFooter` + `OrderNowDropdown` directly (no layout component).
+- Navigation links point to `#menu`, `#footer`, `/gallery`, and the legal pages in the footer.
+- The dev server proxies `/api` → `http://127.0.0.1:8000` (see `vite.config.ts`).
+
+## SEO
+
+- Every page calls `usePageMeta` (`src/hooks/use-page-meta.ts`) to set its `<title>` and meta description.
+- `/privacy` and `/terms` pass `noindex: true` so legal pages are dropped from Google instead of surfacing as sitelinks (and are intentionally left out of the sitemap).
+- Restaurant JSON-LD (`schema.org/Restaurant`) structured data lives in `index.html`.
+- `public/robots.txt` references `public/sitemap.xml`, which lists only `/` and `/gallery` — the indexable pages.
 
 ## Styling & Theming
 
@@ -61,14 +79,15 @@ stitch_gallery_page/               # Original gallery page static design mockup 
 
 ## Assets
 
-- Static files live in `public/`. Organized as `public/assets/` (food images, icons) and `public/stitch/` (hero/background images from the Stitch design).
-- Image paths are hardcoded as string constants at the top of each page component (e.g., `assetImages`, `stitchImages`, `reviewLogos`).
+- Static files live in `public/`: `public/assets/` (dish photos under `entrees/` and `small_plates/`, `review logos/`, dietary-icon PNGs, hero-video MP4s, logos) plus `public/robots.txt` and `public/sitemap.xml`.
+- Image paths are hardcoded as string constants at the top of each page component (e.g., `assetImages`, `entrees`, `smallPlatesImages`, `reviewLogos`).
 
 ## Component Conventions
 
 - **shadcn-first**: prefer existing `src/components/ui/*` primitives before building custom components — see `.github/instructions/shadcn-first.instructions.md`.
 - Utility-first with `cn()` for class merging; avoid inline `style` props unless needed for CSS custom properties or 3D transforms.
-- Components are plain function exports (`export function ...`), not `export default`.
+- Components are plain function exports (`export function ...`), not `export default`. (`main.tsx` / `App.tsx` are the entry-point exceptions.)
+- Import via the `@/` alias (`@/pages/...`, `@/components/...`, `@/hooks/...`), not relative paths.
 
 ## Branch Workflow
 
