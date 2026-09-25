@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { X } from 'lucide-react'
 
@@ -12,52 +12,92 @@ interface ImagePopupProps {
 }
 
 export function ImagePopup({ src, alt, open, onClose }: ImagePopupProps) {
+  // Track *which* src finished rather than a boolean, so a different image
+  // (or a re-open) starts out not-ready without needing a reset effect.
+  const [loadedSrc, setLoadedSrc] = useState<string | null>(null)
+  const [failedSrc, setFailedSrc] = useState<string | null>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+
+  const ready = loadedSrc === src
+  const failed = failedSrc === src
+
+  // Held in a ref so the effects below don't re-run on every parent render.
+  const onCloseRef = useRef(onClose)
+  useEffect(() => {
+    onCloseRef.current = onClose
+  }, [onClose])
+
   useEffect(() => {
     if (!open) return
 
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+    let cancelled = false
+    const image = new Image()
+    image.onload = () => {
+      if (!cancelled) setLoadedSrc(src)
     }
-
-    document.body.style.overflow = 'hidden'
-    document.addEventListener('keydown', handleEscape)
+    image.onerror = () => {
+      if (!cancelled) setFailedSrc(src)
+    }
+    image.src = src
 
     return () => {
-      document.body.style.overflow = ''
-      document.removeEventListener('keydown', handleEscape)
+      cancelled = true
     }
-  }, [open, onClose])
+  }, [open, src])
 
-  if (!open) return null
+  useEffect(() => {
+    if (!open) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onCloseRef.current()
+    }
+
+    // Restore whatever was there before rather than clearing it.
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [open])
+
+  useEffect(() => {
+    if (open && ready) closeButtonRef.current?.focus()
+  }, [open, ready])
+
+  if (!open || !ready || failed) return null
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
-      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={alt}
+      className="image-popup fixed inset-0 z-50 flex items-center justify-center p-4"
+      onClick={() => onCloseRef.current()}
     >
-      {/* Relative wrapper to anchor the close button */}
-      <div className="relative" onClick={(e) => e.stopPropagation()}>
-        <img
-          src={src}
-          alt={alt}
-          className={cn(
-            'max-h-[85vh] max-w-[90vw] rounded-2xl object-contain shadow-2xl',
-          )}
-        />
+      <button
+        ref={closeButtonRef}
+        type="button"
+        aria-label="Close popup"
+        onClick={() => onCloseRef.current()}
+        className={cn(
+          'absolute right-4 top-4 flex h-11 w-11 items-center justify-center',
+          'rounded-full bg-black/70 text-white ring-1 ring-white/50',
+          'transition-colors hover:bg-black/90',
+          'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white',
+        )}
+      >
+        <X className="h-5 w-5" />
+      </button>
 
-        <button
-          type="button"
-          aria-label="Close popup"
-          onClick={onClose}
-          className={cn(
-            'absolute -right-3 -top-3 flex h-9 w-9 items-center justify-center',
-            'rounded-full bg-white/20 text-white shadow-lg backdrop-blur-md',
-            'transition-all hover:scale-110 hover:bg-white/30',
-          )}
-        >
-          <X className="h-5 w-5" />
-        </button>
-      </div>
+      <img
+        src={src}
+        alt={alt}
+        className="image-popup__img rounded-2xl shadow-2xl"
+        onClick={(event) => event.stopPropagation()}
+      />
     </div>,
     document.body,
   )

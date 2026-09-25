@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
@@ -7,6 +7,33 @@ import { LogoCarousel } from '@/components/logo-carousel'
 import { ImagePopup } from '@/components/image-popup'
 import { SmsOptInForm } from '@/components/sms-opt-in-form'
 import { usePageMeta } from '@/hooks/use-page-meta'
+
+/**
+ * How often the seasonal special popup auto-opens.
+ * 'session' — at most once per browser session, so a reload can never re-trap a visitor.
+ * 'always'  — on every page load.
+ */
+const SPECIAL_POPUP_FREQUENCY: 'session' | 'always' = 'session'
+const SPECIAL_POPUP_SESSION_KEY = 'chiang-mai:special-popup-seen'
+
+function shouldAutoOpenSpecialPopup() {
+  if (SPECIAL_POPUP_FREQUENCY === 'always') return true
+
+  try {
+    return window.sessionStorage.getItem(SPECIAL_POPUP_SESSION_KEY) !== '1'
+  } catch {
+    // Storage blocked (private mode, site data disabled) — never risk blocking the page.
+    return false
+  }
+}
+
+function markSpecialPopupSeen() {
+  try {
+    window.sessionStorage.setItem(SPECIAL_POPUP_SESSION_KEY, '1')
+  } catch {
+    // Storage blocked — only affects how often the popup reappears.
+  }
+}
 
 const assetImages = {
   logo: '/assets/logo-white.png',
@@ -390,7 +417,17 @@ export function HomePage() {
   const [entreesIndex, setEntreesIndex] = useState(0)
   const [flippedPlate, setFlippedPlate] = useState<string | null>(null)
   const [flippedEntree, setFlippedEntree] = useState<string | null>(null)
-  const [showSpecialPopup, setShowSpecialPopup] = useState(true)
+  const [showSpecialPopup, setShowSpecialPopup] = useState(shouldAutoOpenSpecialPopup)
+
+  // Record it as soon as it opens, not when it closes: a visitor who reloads
+  // while the popup is up must not land in it a second time.
+  useEffect(() => {
+    if (showSpecialPopup) markSpecialPopupSeen()
+  }, [showSpecialPopup])
+
+  const closeSpecialPopup = useCallback(() => {
+    setShowSpecialPopup(false)
+  }, [])
 
   const testimonialPageSize = 3
   const platesPageSize = 3
@@ -514,6 +551,7 @@ export function HomePage() {
               loop
               muted
               playsInline
+              preload="metadata"
               disablePictureInPicture
               disableRemotePlayback
               className="aspect-video w-full object-cover"
@@ -874,7 +912,7 @@ export function HomePage() {
         src="/assets/special_days/tom_yum_special.png"
         alt="Tom Yum Noodle Soup - Thai Special"
         open={showSpecialPopup}
-        onClose={() => setShowSpecialPopup(false)}
+        onClose={closeSpecialPopup}
       />
     </div>
   )
