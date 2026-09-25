@@ -167,6 +167,22 @@
   }
 }
 
+/* ── Image popup ── */
+.image-popup {
+  /* No backdrop-filter here on purpose: blurring the backdrop of a full-screen
+     fixed overlay renders blank or solid on several mobile GPUs. */
+  background-color: rgb(0 0 0 / 0.85);
+}
+
+.image-popup__img {
+  max-width: 90vw;
+  max-height: 85vh;
+  /* svh is the always-visible height (browser chrome shown), so the whole
+     special stays readable on phones. Browsers without svh keep the vh above. */
+  max-height: 85svh;
+  object-fit: contain;
+}
+
 .logo-marquee {
   position: relative;
   overflow: hidden;
